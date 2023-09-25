@@ -1,0 +1,53 @@
+@import url('../../assets/paleta.css');
+
+.page-login{
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+.page-login .area-apresentacao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2vw;
+    width: 30vw;
+    background-color: var(--azul);
+
+}
+
+.page-login .img-logo {
+    height: 60.47px;
+    width: 60.15px;
+}
+
+.page-login .text-nomeAplicativo {
+    color: var(--branco);
+}
+
+.page-login .text-slogan {
+    color: var(--branco);
+    text-wrap: wrap;
+    text-align: center;
+}
+
+.area-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--cinza-claro);
+    width: 70vw;
+}
+
+.area-login .area-header {
+    display: flex;
+    height: 10vh;
+}
+
+.area-login .area-infoLogin {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 80vh;
+}
