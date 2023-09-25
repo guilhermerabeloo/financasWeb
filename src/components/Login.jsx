@@ -6,9 +6,13 @@ export function Login() {
     return (
         <div className="page-login">
             <div className="area-apresentacao">
-                <img className="img-logo" src={logo} alt="Logo da plataforma" />
-                <h1 className="text-nomeAplicativo">Finanças Web</h1>
-                <p className="text-slogan">Trace metas, defina objetivos e assuma o controle da sua vida financeira sem burocracia!</p>
+                <div className="area-marca">
+                    <img className="img-logo" src={logo} alt="Logo da plataforma" />
+                    <h1 className="text-nomeAplicativo">Finanças Web</h1>
+                </div>
+                <div className="area-infoMarca">
+                    <p className="text-slogan">Trace metas, defina objetivos e assuma o controle da sua vida financeira sem burocracia!</p> 
+                </div>
             </div>
             <div className="area-login">
                 <div className="area-header">
