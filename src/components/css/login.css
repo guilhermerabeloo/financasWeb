@@ -42,12 +42,69 @@
 
 .area-login .area-header {
     display: flex;
+    align-items: center;
+    justify-content: end;
     height: 10vh;
+    width: 100%;
 }
+
+.area-login .area-header .text-possuiConta {
+    margin-right: 2vw;
+    color: var(--azul);
+}
+
+.area-login .area-header .btn-cadastrar {
+    margin-right: 2vw;
+}
+
 
 .area-login .area-infoLogin {
     display: flex;
     flex-direction: column;
     justify-content: center;
     height: 80vh;
+}
+
+.area-login .area-infoLogin .text-tituloLogin {
+    margin-bottom: 10vh;
+    color: var(--azul);
+}
+
+.area-login .area-infoLogin input#input-email {
+    margin-bottom: 4vh;
+}
+
+.area-login .area-infoLogin input {
+    margin-bottom: 1vh;
+    background-color: var(--branco);
+    border: none;
+    height: 6vh;
+    border-radius: 20px;
+}
+
+.area-login .area-infoLogin .text-esqueciSenha {
+    font-size: 15px;
+    margin-right: 13px;
+}
+
+.area-login .area-infoLogin .text-esqueciSenha {
+    text-align: end;
+    color: var(--azul);
+    margin-bottom: 4vh;
+}
+
+.area-login .area-infoLogin .btn-acessar {
+    background-color: var(--azul);
+    color: var(--branco);
+    height: 7vh;
+    border: none;
+    border-radius: 20px;
+}
+
+.page-login .area-footer {
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    height: 10vh;
+    width: 70vw;
 }
