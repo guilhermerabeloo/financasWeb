@@ -75,7 +75,7 @@
 .area-login .area-header .btn-cadastrar {
     margin-right: 2vw;
     background: none;
-    height: 6vh;
+    height: 35px;
     width: 8vw;
     border: solid 2px;
     border-color: var(--azul);
@@ -113,7 +113,7 @@
     margin-bottom: 1vh;
     background-color: var(--branco);
     border: none;
-    height: 6vh;
+    height: 35px;
     border-radius: 20px;
     padding: 2px 1.5vw 2px 1.5vw;
 }
@@ -189,4 +189,48 @@
 
 .page-login .area-footer:hover {
     opacity: .9;
+}
+
+#logo-login {
+    display: none;
+}
+
+@media screen and (max-width: 480px) {
+    .page-login {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .page-login .area-apresentacao {
+        display: none;
+    }
+
+    .area-login {
+        display: flex;
+        width: 100vw;
+    }
+
+    .area-login .area-headerLogin {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .page-login .area-footer {
+        width: 90vw;
+        font-size: 12px;
+    }
+
+    .area-login .area-header .btn-cadastrar {
+        width: 25vw;
+        height: 5.2vh;
+    }
+
+    .area-login .area-header .text-possuiConta {
+        font-size: 14px;
+    }
+
+    #logo-login {
+        display: block;
+    }
 }

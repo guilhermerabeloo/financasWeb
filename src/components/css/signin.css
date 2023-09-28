@@ -72,10 +72,10 @@
     color: var(--azul);
 }
 
-.area-signin .area-header .btn-cadastrar {
+.area-signin .area-header .btn-logar {
     margin-right: 2vw;
     background: none;
-    height: 6vh;
+    height: 35px;
     width: 8vw;
     border: solid 2px;
     border-color: var(--azul);
@@ -85,11 +85,11 @@
     transition: border-color 1s;
 }
 
-.area-signin .area-header .btn-cadastrar:hover {
+.area-signin .area-header .btn-logar:hover {
     border-color: rgba(var(--azul), 0.9);
 }
 
-.area-signin .area-header .btn-cadastrar:active {
+.area-signin .area-header .btn-logar:active {
     transform: scale(0.95);
 }
 
@@ -109,7 +109,7 @@
     margin-bottom: 4vh;
     background-color: var(--branco);
     border: none;
-    height: 6vh;
+    height: 35px;
     border-radius: 20px;
     padding: 2px 1.5vw 2px 1.5vw;
 }
@@ -185,4 +185,48 @@
 
 .page-signin .area-footer:hover {
     opacity: .9;
+}
+
+#logo-signin {
+    display: none;
+}
+
+@media screen and (max-width: 480px) {
+    .page-signin {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .page-signin .area-apresentacao {
+        display: none;
+    }
+
+    .area-signin {
+        display: flex;
+        width: 100vw;
+    }
+
+    .area-signin .area-headerSingin {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .page-signin .area-footer {
+        width: 90vw;
+        font-size: 12px;
+    }
+
+    .area-signin .area-header .btn-logar {
+        width: 25vw;
+        height: 5.2vh;
+    }
+
+    .area-signin .area-header .text-possuiConta {
+        font-size: 14px;
+    }
+
+    #logo-signin {
+        display: block;
+    }
 }

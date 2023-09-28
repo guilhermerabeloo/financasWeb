@@ -32,7 +32,10 @@ export function Login({ mostrarTelaLogin, mudarTela }) {
                     </div>
                     <div className="area-login">
                         <div className="area-infoLogin">
-                            <h2 className="text-tituloLogin">Faça login em Finanças Web</h2>
+                            <div className="area-headerLogin">
+                                <img id="logo-login" className="img-logo" src={logo} alt="Logo da plataforma" />
+                                <h2 className="text-tituloLogin">Faça login no Finanças Web</h2>
+                            </div>
                             <input id="input-email" type="text" placeholder="Email"/>
                             <input id="input-senha" type="text" placeholder="Senha"/>
                             <p className="text-esqueciSenha">Esqueci minha senha</p>

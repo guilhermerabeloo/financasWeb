@@ -24,7 +24,7 @@ export function Signin({ mostrarTelaLogin, mudarTela }) {
                     <div className="area-header">
                         <p className="text-possuiConta">Já possui conta?</p>
                         <button 
-                            className="btn-cadastrar"
+                            className="btn-logar"
                             onClick={() => mudarTela(!mostrarTelaLogin)}
                         >
                             Faça login!
@@ -32,7 +32,10 @@ export function Signin({ mostrarTelaLogin, mudarTela }) {
                     </div>
                     <div className="area-signin">
                         <div className="area-infoSignin">
-                            <h2 className="text-tituloSignin">Cadastre-se no Finanças Web</h2>
+                            <div className="area-headerSingin">
+                                <img id="logo-signin" className="img-logo" src={logo} alt="Logo da plataforma" />
+                                <h2 className="text-tituloSignin">Cadastre-se no Finanças Web</h2>
+                            </div>
                             <input id="input-nome" type="text" placeholder="Nome e sobrenome"/>
                             <input id="input-email" type="text" placeholder="Email"/>
                             <input id="input-senha" type="password" placeholder="Senha"/>
