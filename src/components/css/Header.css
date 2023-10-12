@@ -1,0 +1,73 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 10vh;
+    background-color: var(--azul);
+    color: var(--branco);
+}
+
+.header-infoEmpresa,
+.header-infoUsuario {
+    display: flex;
+    align-items: center;
+}
+
+.header-infoEmpresa {
+    margin-left: 60px;
+    cursor: pointer;
+}
+
+.header .img-logo {
+    height: 22.47px;
+    width: 22.15px;
+}
+
+.header h1{
+    font-size: 18px;
+    margin-left: 15px;
+}
+
+.header-infoUsuario {
+    margin-right: 2%;
+}
+
+.header-infoUsuario .icon-exit{
+    font-size: 23px;
+}
+
+#user-image {
+    border-radius: 50%;
+    margin-right: 18px;
+}
+
+.header-infoUsuario p {
+    cursor: pointer;
+    font-size: 15px;
+    margin-right: 10px;
+}
+
+.header-infoUsuario p:hover {
+    text-decoration: underline;
+}
+
+.header-infoUsuario p:active {
+    transform: scale(0.95);
+    transition: transform 0.2s ease-in-out;
+}
+
+.icon-exit {
+    cursor: pointer;
+    opacity: 1;
+}
+
+.icon-exit {
+    cursor: pointer;
+    opacity: .9;
+}
+
+.icon-exit:active {
+    transform: scale(0.95);
+    transition: transform 0.2s ease-in-out;
+}

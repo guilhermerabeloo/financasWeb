@@ -1,20 +1,16 @@
 import './App.css';
-import { Login } from '../components/Login';
-import { Signin } from '../components/Singin';
-import { useState } from 'react';
+import { Outlet } from "react-router-dom";
+import Header from '../components/Header';
+import MenuLateral from '../components/MenuLateral';
 
 function App() {
-  const [ telaLogin, setTelaLogin ] = useState(true);
   return (
     <>
-      <Login 
-        mostrarTelaLogin={telaLogin}
-        mudarTela={setTelaLogin}
-      />
-      <Signin 
-        mostrarTelaLogin={telaLogin}
-        mudarTela={setTelaLogin}
-      />
+      <Header />
+      <div className='app-container'>
+        <MenuLateral />
+        <Outlet />
+      </div>
     </>
   )
 }
