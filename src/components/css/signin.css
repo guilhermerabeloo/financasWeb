@@ -114,6 +114,19 @@
     padding: 2px 1.5vw 2px 1.5vw;
 }
 
+.area-signin .area-infoSignin input.erro {
+    border: 2px solid red;
+    animation: shake 0.3s;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(5px); }
+}
+
 .area-signin .area-infoSignin input::placeholder {
     margin-left: 5vw;
     color: #ADABAB;
