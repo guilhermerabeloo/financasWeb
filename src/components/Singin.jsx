@@ -11,7 +11,6 @@ Signin.propTypes = {
 };
 
 export function Signin({ mostrarTelaLogin, mudarTela }) {
-    const [ erroNoPrenchimento, setErroNoPreenchimento ] = useState(false);
     const [ validacaoFormulario, setValidacaoFormulario ] = useState({
         nome: false,
         email: false,
@@ -52,7 +51,6 @@ export function Signin({ mostrarTelaLogin, mudarTela }) {
             toast.error('Erro no preenchimento do formulário', {
                 autoClose: 2000,
             });
-            setErroNoPreenchimento(false);
 
             return
         }

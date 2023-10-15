@@ -105,7 +105,7 @@
     color: var(--azul);
 }
 
-.area-login .area-infoLogin input#input-email {
+.area-login .area-infoLogin input#email {
     margin-bottom: 4vh;
 }
 
@@ -116,6 +116,19 @@
     height: 35px;
     border-radius: 20px;
     padding: 2px 1.5vw 2px 1.5vw;
+}
+
+.area-login .area-infoLogin input.erro {
+    border: 2px solid red;
+    animation: shake 0.3s;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(5px); }
 }
 
 .area-login .area-infoLogin input::placeholder {

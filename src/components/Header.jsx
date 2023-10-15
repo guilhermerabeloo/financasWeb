@@ -2,8 +2,17 @@ import './css/Header.css'
 import user from '../assets/user.jpeg';
 import logo from '../assets/logo.png'
 import { BiExit } from "react-icons/bi";
+import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 export default function Header() {
+    const navigate = useNavigate();
+
+    const logout = () => {
+        Cookies.remove('token')
+        navigate('/entrar');
+    }
+
     return (
         <>
             <div className="header">
@@ -14,7 +23,7 @@ export default function Header() {
                 <div className="header-infoUsuario">
                     <div><img id="user-image"src={user} alt="" /></div>
                     <p>Guilherme Rabelo</p>
-                    <BiExit className='icon-exit'/>
+                    <BiExit className='icon-exit' onClick={logout}/>
                 </div>
             </div>
         </>

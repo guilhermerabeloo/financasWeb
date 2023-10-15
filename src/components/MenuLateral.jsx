@@ -7,7 +7,7 @@ import { BsGraphUpArrow, BsChevronRight, BsChevronLeft } from 'react-icons/bs'
 import { useState } from "react"
 
 export default function MenuLateral() {
-    const [menuExpandido, setMenuExpandido] = useState(false)
+    const [menuExpandido, setMenuExpandido] = useState(false);
 
     return (
         <>
