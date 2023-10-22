@@ -105,3 +105,49 @@
 .recuado {
     display: none;
 }
+
+ @media screen and (max-width: 480px) { 
+    .menu-lateral {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        width: 100vw;
+        height: 10vh;
+    }   
+
+    .menu-lateral p {
+        display: none;
+    }
+
+    .menu-lateral ul {
+        display: flex;
+        flex-direction: row;
+        width: 80%;
+    }
+
+    .menu-lateral li {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 25%;
+        text-decoration: none;
+        line-height: 0px;
+        margin-bottom: 0px;
+        font-size: 15px;
+        transition: .3s;
+    }
+
+    .menu-lateral .area-expandeMenu {
+        display: none;
+    }
+
+    .menu-lateral #btn-addRegistro {
+        margin: 0;
+    }
+
+    .menu-lateral li a {
+        padding: 0;
+    }
+}

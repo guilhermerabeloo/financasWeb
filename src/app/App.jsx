@@ -10,12 +10,12 @@ function App() {
   const cookie = Cookies.get('token');
   const navigate = useNavigate();
 
-  if(!cookie) {
-    navigate('/');
-    return (
-      <Entrar />
-    )
-  } else {
+  // if(!cookie) {
+  //   navigate('/');
+  //   return (
+  //     <Entrar />
+  //   )
+  // } else {
     return (
       <>
         <Header />
@@ -25,7 +25,7 @@ function App() {
         </div>
       </>
     )
-  }
+  // }
 
 }
 

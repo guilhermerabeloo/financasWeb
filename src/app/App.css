@@ -13,3 +13,10 @@
     flex-direction: row;
     align-items: end;
 }
+
+@media screen and (max-width: 480px) {
+    .app-content {
+        display: flex;
+        flex-direction: column;
+    }
+}

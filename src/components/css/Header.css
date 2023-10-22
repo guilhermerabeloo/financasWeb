@@ -71,3 +71,30 @@
     transform: scale(0.95);
     transition: transform 0.2s ease-in-out;
 }
+
+
+@media screen and (max-width: 480px) {
+    .header-infoEmpresa {
+        margin-left: 25px;
+        cursor: pointer;
+    }
+    
+    .header .img-logo {
+        height: 22.47px;
+        width: 22.15px;
+    }
+    
+    .header-infoUsuario .icon-exit{
+        display: none;
+    }
+    
+    #user-image {
+        border-radius: 50%;
+        margin-right: 18px;
+        border: solid 2px var(--cinza-claro);
+    }
+    
+    .header-infoUsuario p {
+        display: none;
+    }
+}
