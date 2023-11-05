@@ -4,18 +4,39 @@
     font-family: Arial, Helvetica, sans-serif
 }
 
-.app-container {
-    display: flex;
+.container {
+    background-color: var(--cinza-claro);
+    display: grid;
+    transition: .5s;
+    grid-template-columns: 77px 94%;
+    grid-template-rows: 85vh 5vh;
+    grid-template-areas:
+        'menu-lateral content'
+        'menu-lateral footer';
 }
 
-.app-content {
+.container.menu-expandido {
+    display: grid;
+    grid-template-columns: 180px 86%;
+    grid-template-rows: 85vh 5vh;
+}
+
+.menu-lateral {
+    grid-area: menu-lateral;
+}
+
+.content {
+    grid-area: content;
+}
+
+/* .app-content {
     display: flex;
     flex-direction: row;
     align-items: end;
-}
+} */
 
 @media screen and (max-width: 480px) {
-    .app-content {
+    .content {
         display: flex;
         flex-direction: column;
     }

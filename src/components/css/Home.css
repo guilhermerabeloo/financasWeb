@@ -1,0 +1,131 @@
+.container-home {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.area-resumoMes {
+    max-height: 20%;
+}
+
+.area-saldo {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    border-radius: 20px;
+    background-color: var(--branco);
+    box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.3);
+}
+
+.area-saldoMeta,
+.area-receitaDespesa {
+    display: flex;
+    width: 50%;
+    padding: 20px 40px 20px 40px;
+    box-sizing: border-box;
+}
+
+.area-receitaDespesa {
+    border-left: solid 1px;
+}
+
+.area-saldoMeta .saldo {
+    width: 50%;
+}
+
+.area-saldoMeta .saldo h5 {
+    font-size: 1em;
+    margin-bottom: 1.6vh;
+}
+
+.area-saldoMeta .saldo p {
+    font-size: 5vh;
+    color: green;
+}
+
+.area-saldoMeta .meta {
+    width: 50%;
+}
+
+.area-saldoMeta .meta h5 {
+    font-size: 1em;
+    margin-bottom: 1.6vh;
+}
+
+.area-saldoMeta .meta p {
+    font-size: 5vh;
+    color: rgb(255, 153, 0);
+}
+
+.area-receitaDespesa .receita {
+    width: 50%;
+}
+
+.area-receitaDespesa .receita h5 {
+    font-size: 1em;
+    margin-bottom: 1.6vh;
+}
+
+.area-receitaDespesa .receita p {
+    font-size: 5vh;
+}
+
+.area-receitaDespesa .despesa {
+    width: 50%;
+}
+
+.area-receitaDespesa .despesa h5 {
+    font-size: 1em;
+    margin-bottom: 1.6vh;
+}
+
+.area-receitaDespesa .despesa p {
+    font-size: 5vh;
+    color: red
+}
+
+.cabecalho-AcessoRapido {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 40px;
+}
+
+.area-acessoRapido h3 {
+    margin-bottom: 10px;
+    color: var(--azul-claro);
+}
+
+/* .area-acessoRapido {
+    height: 66vh;
+    margin: 0 0 0 40px;
+} */
+
+.area-acessos {
+    overflow-x: auto;
+}
+
+.container-lateral {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.container-acessoRapido {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+    width: 300px;
+    height: 330px;
+    border-radius: 20px;
+    background-color: var(--branco);
+    margin-right: 40px;
+    box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.3);
+}
+
+.container-acessoRapido h4 {
+    width: 300px;
+    text-align: center;
+    color: var(--azul);
+}

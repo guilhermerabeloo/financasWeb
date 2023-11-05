@@ -1,0 +1,20 @@
+.container-btnRolagem button {
+    margin-left: 10px;
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    background: none;
+    color: var(--azul);
+    border: solid 1px;
+    border-color: var(--azul);
+    cursor: pointer;
+    opacity: 1
+}
+
+.container-btnRolagem button:hover {
+    opacity: .9
+}
+
+.container-btnRolagem button:active {
+    transform: scale(0.95);
+}
