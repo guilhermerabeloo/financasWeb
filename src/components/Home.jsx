@@ -1,3 +1,6 @@
+import ChecklistAcessoRapido from './ChecklistAcessoRápido'
+import MovimentacoesAcessoRapido from './MovimentacoesAcessoRapido'
+import ObjetivoAcessoRapido from './ObjetivoAcessoRapido'
 import './css/Home.css'
 
 export default function Home() {
@@ -34,30 +37,10 @@ export default function Home() {
                     </div>
                     <div className="area-acessos">
                         <div className="container-lateral">
-                            <div className="checklist container-acessoRapido">
-                                <h4>Checklist</h4>
-                                <div className="content">
-                                    
-                                </div>
-                            </div>
-                            <div className="movimentacoes container-acessoRapido">
-                                <h4>Últimas movimentações</h4>
-                                <div className="content">
-                                    
-                                </div>
-                            </div>
-                            <div className="objetivos container-acessoRapido">
-                                <h4>Objetivo atual</h4>
-                                <div className="content">
-                                    
-                                </div>
-                            </div>
-                            <div className="objetivos container-acessoRapido">
-                                <h4>Objetivo atual</h4>
-                                <div className="content">
-                                    
-                                </div>
-                            </div>
+                            <ChecklistAcessoRapido />
+                            <MovimentacoesAcessoRapido />
+                            <ObjetivoAcessoRapido />
+                            <ChecklistAcessoRapido />
                         </div>
                     </div>
                 </div>
