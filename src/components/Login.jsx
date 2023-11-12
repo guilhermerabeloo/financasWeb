@@ -68,7 +68,7 @@ export function Login({ mostrarTelaLogin, mudarTela }) {
             login(token);
             Cookies.set('token', token, {expires: 3});
 
-            navigate('/');
+            navigate('/home');
         } catch(err) {  
             console.log('catch')
             if(err.response.data.hint == 'Email não cadastrado') {

@@ -95,19 +95,24 @@
     color: var(--azul-claro);
 }
 
-/* .area-acessoRapido {
-    height: 66vh;
-    margin: 0 0 0 40px;
-} */
+.container-lateral::-webkit-scrollbar {
+    height: 15px;
+}
 
-.area-acessos {
-    overflow-x: auto;
+.container-lateral::-webkit-scrollbar-thumb {
+    background-color: #aaa;
+    border-radius: 10px;
 }
 
 .container-lateral {
     display: flex;
     overflow-x: auto;
     white-space: nowrap;
+    padding-bottom: 10px;
+}
+
+.area-acessoRapido {
+    margin-top: 20px;
 }
 
 .container-acessoRapido {
@@ -128,4 +133,5 @@
     width: 300px;
     text-align: center;
     color: var(--azul);
+    margin-bottom: 10px;
 }
