@@ -31,10 +31,44 @@ export default function Checklist() {
                     </div>
                     <div className="area-checklistInfo">
                         <div className="area-totalizadoresChecklist">
-                            2
+                            <div className="area-totalGastoChecklist">
+                                <div className="area-IconTotalizadoresChecklist">
+                                    1
+                                </div>
+                                <div className="area-valoresTotalizadoresChecklist">
+                                    2
+                                </div>
+                            </div>
+                            <div className="area-valorPendenteChecklist">
+                                <div className="area-IconTotalizadoresChecklist">
+                                    3
+                                </div>
+                                <div className="area-valoresTotalizadoresChecklist">
+                                    4   
+                                </div>
+                            </div>
                         </div>
-                        <div className="area-addItemChecklist">
-                            3
+                        <div className="area-novoItemChecklist">
+                            <div className="area-addItemChecklist">
+                                <h4>Adicionar novo item</h4>
+                                <form action="submit" className="form-addItem">
+                                    <div className="area-nomeNovoItem">
+                                        <label htmlFor="nomeNovoItem">Item</label>
+                                        <input type="text" id="nomeNovoItem" placeholder="Ex: Conta de luz"/>
+                                    </div>
+                                    <div className="area-valorDia">
+                                        <div className="area-valor">
+                                            <label htmlFor="valorNovoItem">Valor</label>
+                                            <input type="number" id="valorNovoItem" placeholder="R$ 0,00"/>
+                                        </div>
+                                        <div className="area-dia">
+                                            <label htmlFor="diaNovoItem">Dia</label>
+                                            <input type="number" id="diaNovoItem" placeholder="Ex: 30"/>
+                                        </div>
+                                    </div>
+                                    <button id="btn-addNovoItemChecklist">Adicionar</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
