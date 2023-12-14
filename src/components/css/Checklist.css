@@ -1,0 +1,52 @@
+.area-tituloChecklist {
+    display: flex;
+    align-items: end;
+    margin-left: 2%;
+    height: 5%;
+    color: var(--azul-claro);
+}
+
+.content-checklist {
+    display: flex;
+    height: 100%;
+}
+
+.area-checklist {  
+    width: 75%;
+    padding: 2%;
+    box-sizing: border-box;
+}
+
+.checklist {
+    height: 100%;
+    background-color: var(--branco);
+    border-radius: 20px;
+    box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.3);
+    padding: 2%;
+    box-sizing: border-box;
+}
+
+.itens-checklist {
+    width: 100%;
+}
+
+.itens-checklist th {
+    border-bottom: solid 1px
+}
+
+.itens-checklist th, 
+.itens-checklist td{
+    height: 40px;
+}
+
+.area-checklistInfo {
+    width: 25%;
+}
+
+.area-totalizadoresChecklist {
+    height: 45%;
+}
+
+.area-addItemChecklist {
+    height: 55%;
+}
