@@ -9,17 +9,24 @@ AuthProvider.propTypes = {
 
 export function AuthProvider({ children }) {
     const [ token, setToken ] = useState(null);
+    const [ username, setUsername ] = useState(null);
+    const [ userid, setUserid ] = useState(null);
 
-    const login = (newToken) => {
+    const login = (newToken, newUsername, newUserId) => {
         setToken(newToken)
+        setUsername(newUsername)
+        setUserid(newUserId)
     };
+
+    console.log(username)
+    console.log(userid)
 
     const logout = () => {
         setToken(null)
     };
 
     return (
-        <AuthContext.Provider value={{ token, login, logout }}>
+        <AuthContext.Provider value={{ token, username, userid, login, logout }}>
             {children}
         </AuthContext.Provider>
     );

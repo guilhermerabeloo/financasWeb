@@ -1,7 +1,11 @@
 import { BsPencilSquare, BsBackspace } from "react-icons/bs";
+import { useAuth } from "../lib/AuthContext.jsx";
 import './css/Checklist.css'
 
 export default function Checklist() {
+    const a = useAuth()
+    console.log(a)
+
     return (
         <>
             <div className="container-checklist">
@@ -13,18 +17,22 @@ export default function Checklist() {
                         <div className="checklist">
                             <table className="itens-checklist">
                                 <thead>
-                                    <th style={{width: "10%"}}></th>
-                                    <th style={{width: "40%", textAlign: "start"}}>Item</th>
-                                    <th style={{width: "20%"}}>Valor</th>
-                                    <th style={{width: "20%"}}>Dia do mês</th>
-                                    <th style={{width: "10%"}}></th>
+                                    <tr>
+                                        <th style={{width: "10%"}}></th>
+                                        <th style={{width: "40%", textAlign: "start"}}>Item</th>
+                                        <th style={{width: "20%"}}>Valor</th>
+                                        <th style={{width: "20%"}}>Dia do mês</th>
+                                        <th style={{width: "10%"}}></th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                    <td><input type="checkbox" id="energia"/></td>
-                                    <td>IPTV</td>
-                                    <td style={{textAlign: "center"}}>R$ 35,00</td>
-                                    <td style={{textAlign: "center"}}>07</td>
-                                    <td style={{textAlign: "center"}}><BsPencilSquare /><BsBackspace /></td>
+                                    <tr>
+                                        <td><input type="checkbox" id="energia"/></td>
+                                        <td>IPTV</td>
+                                        <td style={{textAlign: "center"}}>R$ 35,00</td>
+                                        <td style={{textAlign: "center"}}>07</td>
+                                        <td style={{textAlign: "center"}}><BsPencilSquare /><BsBackspace /></td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

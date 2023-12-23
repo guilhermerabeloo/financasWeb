@@ -65,12 +65,13 @@ export function Login({ mostrarTelaLogin, mudarTela }) {
                 }
             )
             const token = response.data.token;
-            login(token);
+            const username = response.data.username;
+            const userId = response.data.userId;
+            login(token, username, userId);
             Cookies.set('token', token, {expires: 3});
 
             navigate('/home');
         } catch(err) {  
-            console.log('catch')
             if(err.response.data.hint == 'Email não cadastrado') {
                 toast.error('Email incorreto', {
                     autoClose: 2000,
