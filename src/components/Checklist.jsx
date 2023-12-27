@@ -1,10 +1,27 @@
 import { BsPencilSquare, BsBackspace } from "react-icons/bs";
-import { useAuth } from "../lib/AuthContext.jsx";
+import { useEffect, useState } from "react";
+import { api } from '../lib/api';
+import Cookies from 'js-cookie';
 import './css/Checklist.css'
 
 export default function Checklist() {
-    const a = useAuth()
-    console.log(a)
+    const [ itensChecklist, setItensChecklist ] = useState([])
+
+    const email = decodeURIComponent(Cookies.get('userEmail'));
+    useEffect(() => {
+        async function getItensChecklist() {
+            try {
+                const response = await api.get(`/checklistUsuario/${email}`)
+                const data = response.data.data;
+
+                setItensChecklist(data)
+            } catch(error) {
+                console.log(error)
+            }
+        }
+        getItensChecklist()
+    }, [email])
+
 
     return (
         <>
@@ -26,13 +43,17 @@ export default function Checklist() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td><input type="checkbox" id="energia"/></td>
-                                        <td>IPTV</td>
-                                        <td style={{textAlign: "center"}}>R$ 35,00</td>
-                                        <td style={{textAlign: "center"}}>07</td>
-                                        <td style={{textAlign: "center"}}><BsPencilSquare /><BsBackspace /></td>
-                                    </tr>
+                                    {itensChecklist.map((item) => {
+                                        return (
+                                            <tr key={item.id}>
+                                                <td><input type="checkbox" id={item.id} checked={item.checked}/></td>
+                                                <td>{item.item}</td>
+                                                <td style={{textAlign: "center"}}>R$ {item.valor}</td>
+                                                <td style={{textAlign: "center"}}>{item.dia_mes}</td>
+                                                <td style={{textAlign: "center"}}><BsPencilSquare /><BsBackspace /></td>
+                                            </tr>
+                                        )
+                                    })}
                                 </tbody>
                             </table>
                         </div>

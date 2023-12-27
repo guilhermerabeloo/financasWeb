@@ -2,7 +2,6 @@ import './css/login.css'
 import logo from '../assets/logo.png'
 import PropTypes from 'prop-types';
 import Cookies from 'js-cookie';
-import { useAuth } from '../lib/AuthContext';
 import { api } from '../lib/api';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
@@ -22,7 +21,7 @@ export function Login({ mostrarTelaLogin, mudarTela }) {
         email: '',
         senha: ''
     });
-    const { login } = useAuth();
+
     const navigate = useNavigate();
 
     const handleChangeForm = (event) => {
@@ -66,9 +65,10 @@ export function Login({ mostrarTelaLogin, mudarTela }) {
             )
             const token = response.data.token;
             const username = response.data.username;
-            const userId = response.data.userId;
-            login(token, username, userId);
+            const userEmail = response.data.userEmail;
             Cookies.set('token', token, {expires: 3});
+            Cookies.set('username', encodeURIComponent(username), {expires: 3});
+            Cookies.set('userEmail', userEmail, {expires: 3});
 
             navigate('/home');
         } catch(err) {  

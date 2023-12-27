@@ -10,8 +10,12 @@ export default function Header() {
 
     const logout = () => {
         Cookies.remove('token')
+        Cookies.remove('username')
+        Cookies.remove('userEmail')
+
         navigate('/entrar');
     }
+    const username = decodeURIComponent(Cookies.get('username'));
 
     return (
         <div className="header">
@@ -21,7 +25,7 @@ export default function Header() {
             </div>
             <div className="header-infoUsuario">
                 <div><img id="user-image"src={user} alt="" /></div>
-                <p>Guilherme Rabelo</p>
+                <p>{username}</p>
                 <BiExit className='icon-exit' onClick={logout}/>
             </div>
         </div>

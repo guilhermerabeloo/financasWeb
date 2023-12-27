@@ -18,9 +18,6 @@ export function AuthProvider({ children }) {
         setUserid(newUserId)
     };
 
-    console.log(username)
-    console.log(userid)
-
     const logout = () => {
         setToken(null)
     };
