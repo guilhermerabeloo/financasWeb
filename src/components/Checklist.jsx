@@ -1,11 +1,13 @@
 import { BsPencilSquare, BsBackspace } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { api } from '../lib/api';
+import { ToastContainer, toast } from 'react-toastify';
 import Cookies from 'js-cookie';
 import './css/Checklist.css'
 
 export default function Checklist() {
-    const [ itensChecklist, setItensChecklist ] = useState([])
+    const [ itensChecklist, setItensChecklist ] = useState([]);
+    const [ novoItemChecklist, setNovoItemChecklist ] = useState({email: '', item: '', valor: '' , dia_mes: ''});
 
     const email = decodeURIComponent(Cookies.get('userEmail'));
     useEffect(() => {
@@ -22,6 +24,45 @@ export default function Checklist() {
         getItensChecklist()
     }, [email])
 
+    const handleChangeNovoItem = (event) => {
+        const { name, value } = event.target
+        const emailCookie = decodeURIComponent(Cookies.get('userEmail'));
+
+        const item = {...novoItemChecklist};
+
+        item['email'] = emailCookie;
+        item[name] = value;
+
+        setNovoItemChecklist(item)
+    }
+
+    const cadastraNovoItem = async (event) => {
+        event.preventDefault();
+
+        if(!novoItemChecklist.email || !novoItemChecklist.item || !novoItemChecklist.valor || !novoItemChecklist.dia_mes) {
+            toast.warn('Há campos ainda não preenchidos.', {
+                autoClose: 3000,
+            });
+            return
+        }
+
+        try {
+            await api.post(
+                    '/criaItemChecklist',
+                    {
+                        email: novoItemChecklist.email,
+                        item: novoItemChecklist.item,
+                        valor: novoItemChecklist.valor,
+                        dia_mes: novoItemChecklist.dia_mes
+                    }
+                )
+        } catch(err) {
+            console.log(err)
+            toast.error('Erro ao cadastrar o item.', {
+                autoClose: 3000,
+            });
+        }
+    }
 
     return (
         <>
@@ -80,27 +121,28 @@ export default function Checklist() {
                         <div className="area-novoItemChecklist">
                             <div className="area-addItemChecklist">
                                 <h4>Adicionar novo item</h4>
-                                <form action="submit" className="form-addItem">
+                                <form className="form-addItem">
                                     <div className="area-nomeNovoItem">
                                         <label htmlFor="nomeNovoItem">Item</label>
-                                        <input type="text" id="nomeNovoItem" placeholder="Ex: Conta de luz"/>
+                                        <input onChange={handleChangeNovoItem} name="item" type="text" id="nomeNovoItem" placeholder="Ex: Conta de luz"/>
                                     </div>
                                     <div className="area-valorDia">
                                         <div className="area-valor">
                                             <label htmlFor="valorNovoItem">Valor</label>
-                                            <input type="number" id="valorNovoItem" placeholder="R$ 0,00"/>
+                                            <input onChange={handleChangeNovoItem} name="valor" type="number" id="valorNovoItem" placeholder="R$ 0,00"/>
                                         </div>
                                         <div className="area-dia">
                                             <label htmlFor="diaNovoItem">Dia</label>
-                                            <input type="number" id="diaNovoItem" placeholder="Ex: 30"/>
+                                            <input onChange={handleChangeNovoItem} name="dia_mes" type="number" id="diaNovoItem" placeholder="Ex: 30"/>
                                         </div>
                                     </div>
-                                    <button id="btn-addNovoItemChecklist">Adicionar</button>
+                                    <button id="btn-addNovoItemChecklist" onClick={(event) => cadastraNovoItem(event)}>Adicionar</button>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
+                <ToastContainer pauseOnHover={false}/>
             </div>
         </>
     )
