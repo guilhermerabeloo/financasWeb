@@ -7,6 +7,7 @@ import './css/Checklist.css'
 
 export default function Checklist() {
     const [ itensChecklist, setItensChecklist ] = useState([]);
+    const [ atualizaTabela, setAtualizaTabela ] = useState(false)
     const [ novoItemChecklist, setNovoItemChecklist ] = useState({email: '', item: '', valor: '' , dia_mes: ''});
 
     const email = decodeURIComponent(Cookies.get('userEmail'));
@@ -22,7 +23,7 @@ export default function Checklist() {
             }
         }
         getItensChecklist()
-    }, [email])
+    }, [email, atualizaTabela])
 
     const handleChangeNovoItem = (event) => {
         const { name, value } = event.target
@@ -56,12 +57,68 @@ export default function Checklist() {
                         dia_mes: novoItemChecklist.dia_mes
                     }
                 )
+            
+            toast.success('Cadastrado realizado com sucesso!', {
+                autoClose: 3000,
+            });
+
+            setNovoItemChecklist()
         } catch(err) {
             console.log(err)
             toast.error('Erro ao cadastrar o item.', {
                 autoClose: 3000,
             });
         }
+
+        const antigoItem = {...novoItemChecklist};
+
+        antigoItem['item'] = '';
+        antigoItem['valor'] = '';
+        antigoItem['dia_mes'] = '';
+
+        setNovoItemChecklist(antigoItem)
+        setAtualizaTabela(!atualizaTabela)
+    }
+
+    const marcaItemChecklist = async (event) => {
+        const itemMarcado = itensChecklist.find(objeto => objeto.id == event.target.id);
+        const { id, item, valor, dia_mes, checked } = itemMarcado;
+
+        const date = new Date();
+        const ano = date.getFullYear();
+        const mes = date.getMonth() + 1;
+        const dataItemChecklist = `${ano}${mes < 10 ? '0'+mes : mes}${dia_mes < 10 ? '0'+dia_mes : dia_mes}`
+
+        const emailCk = decodeURIComponent(Cookies.get('userEmail'));
+
+        if(checked) {
+            return
+        }
+
+        try {
+            await api.post(
+                '/marcaItemChecklist',
+                {
+                    descricao: item,
+                    data: dataItemChecklist,
+                    valor: valor,
+                    tipomovimento_id: 1,
+                    email: emailCk,
+                    checklistmensal_id: id
+                }
+            )
+
+            toast.success('Movimento cadastrado com sucesso!', {
+                autoClose: 3000,
+            });
+        } catch(err) {
+            console.log(err)
+            toast.error('Erro ao marcar o item.', {
+                autoClose: 3000,
+            });
+        }
+
+        setAtualizaTabela(!atualizaTabela)
     }
 
     return (
@@ -87,7 +144,7 @@ export default function Checklist() {
                                     {itensChecklist.map((item) => {
                                         return (
                                             <tr key={item.id}>
-                                                <td><input type="checkbox" id={item.id} checked={item.checked}/></td>
+                                                <td><input type="checkbox" id={item.id} checked={item.checked} onChange={(event) => {marcaItemChecklist(event)}}/></td>
                                                 <td>{item.item}</td>
                                                 <td style={{textAlign: "center"}}>R$ {item.valor}</td>
                                                 <td style={{textAlign: "center"}}>{item.dia_mes}</td>
@@ -124,16 +181,16 @@ export default function Checklist() {
                                 <form className="form-addItem">
                                     <div className="area-nomeNovoItem">
                                         <label htmlFor="nomeNovoItem">Item</label>
-                                        <input onChange={handleChangeNovoItem} name="item" type="text" id="nomeNovoItem" placeholder="Ex: Conta de luz"/>
+                                        <input onChange={handleChangeNovoItem} name="item" type="text" id="nomeNovoItem" placeholder="Ex: Conta de luz" value={novoItemChecklist.item}/>
                                     </div>
                                     <div className="area-valorDia">
                                         <div className="area-valor">
                                             <label htmlFor="valorNovoItem">Valor</label>
-                                            <input onChange={handleChangeNovoItem} name="valor" type="number" id="valorNovoItem" placeholder="R$ 0,00"/>
+                                            <input onChange={handleChangeNovoItem} name="valor" type="number" id="valorNovoItem" placeholder="R$ 0,00" value={novoItemChecklist.valor}/>
                                         </div>
                                         <div className="area-dia">
                                             <label htmlFor="diaNovoItem">Dia</label>
-                                            <input onChange={handleChangeNovoItem} name="dia_mes" type="number" id="diaNovoItem" placeholder="Ex: 30"/>
+                                            <input onChange={handleChangeNovoItem} name="dia_mes" type="number" id="diaNovoItem" placeholder="Ex: 30" value={novoItemChecklist.dia_mes}/>
                                         </div>
                                     </div>
                                     <button id="btn-addNovoItemChecklist" onClick={(event) => cadastraNovoItem(event)}>Adicionar</button>
