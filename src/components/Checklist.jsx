@@ -1,4 +1,4 @@
-import { BsPencilSquare, BsBackspace } from "react-icons/bs";
+import { BsPencilSquare, BsBackspace, BsClipboard2Check, BsClockHistory  } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { api } from '../lib/api';
 import { ToastContainer, toast } from 'react-toastify';
@@ -9,6 +9,9 @@ export default function Checklist() {
     const [ itensChecklist, setItensChecklist ] = useState([]);
     const [ atualizaTabela, setAtualizaTabela ] = useState(false)
     const [ novoItemChecklist, setNovoItemChecklist ] = useState({email: '', item: '', valor: '' , dia_mes: ''});
+    const [ totalGasto, setTotalGasto ] = useState(200.00);
+    const [ totalPendente, setTotalPendente ] = useState(1786.30);
+
 
     const email = decodeURIComponent(Cookies.get('userEmail'));
     useEffect(() => {
@@ -160,18 +163,18 @@ export default function Checklist() {
                         <div className="area-totalizadoresChecklist">
                             <div className="area-totalGastoChecklist">
                                 <div className="area-IconTotalizadoresChecklist">
-                                    1
+                                    <BsClipboard2Check />
                                 </div>
                                 <div className="area-valoresTotalizadoresChecklist">
-                                    2
+                                    { totalGasto }
                                 </div>
                             </div>
                             <div className="area-valorPendenteChecklist">
                                 <div className="area-IconTotalizadoresChecklist">
-                                    3
+                                    <BsClockHistory />
                                 </div>
                                 <div className="area-valoresTotalizadoresChecklist">
-                                    4   
+                                    { totalPendente }   
                                 </div>
                             </div>
                         </div>

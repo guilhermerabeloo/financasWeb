@@ -82,6 +82,23 @@
     background-color: var(--vermelho-escuro1);
 }
 
+.area-IconTotalizadoresChecklist {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: var(--branco);
+}
+
+.area-valoresTotalizadoresChecklist {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    font-size: 40px;
+    color: var(--branco);
+}
+
 .area-novoItemChecklist {
     height: 50%;    
 }

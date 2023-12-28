@@ -1,5 +1,5 @@
 import './css/Header.css'
-import user from '../assets/user.jpeg';
+import user from '../assets/user.jpg';
 import logo from '../assets/logo.png'
 import { BiExit } from "react-icons/bi";
 import { useNavigate } from 'react-router-dom';
