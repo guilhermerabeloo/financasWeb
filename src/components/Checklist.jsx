@@ -9,8 +9,7 @@ export default function Checklist() {
     const [ itensChecklist, setItensChecklist ] = useState([]);
     const [ atualizaTabela, setAtualizaTabela ] = useState(false)
     const [ novoItemChecklist, setNovoItemChecklist ] = useState({email: '', item: '', valor: '' , dia_mes: ''});
-    const [ totalGasto, setTotalGasto ] = useState(200.00);
-    const [ totalPendente, setTotalPendente ] = useState(1786.30);
+    const [ totais, setTotais ] = useState({gasto: '0,00', pendente: '0,00'})
 
 
     const email = decodeURIComponent(Cookies.get('userEmail'));
@@ -26,6 +25,26 @@ export default function Checklist() {
             }
         }
         getItensChecklist()
+
+        async function getTotaisChecklist() {
+            try {
+                const response = await api.get(`/totaisDoChecklist/${email}`)
+                const data = response.data.data;
+
+                const { valortotal, valorgasto } = data[0];
+                const valorPendente = valortotal - valorgasto;
+
+                const totaisAntigos = { ...totais };
+                totaisAntigos['gasto'] = valorgasto;
+                totaisAntigos['pendente'] = valorPendente;
+
+                setTotais(totaisAntigos)
+            } catch(error) {
+                console.log(error)
+            }
+        }
+        getTotaisChecklist()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [email, atualizaTabela])
 
     const handleChangeNovoItem = (event) => {
@@ -85,7 +104,7 @@ export default function Checklist() {
 
     const marcaItemChecklist = async (event) => {
         const itemMarcado = itensChecklist.find(objeto => objeto.id == event.target.id);
-        const { id, item, valor, dia_mes, checked } = itemMarcado;
+        const { id, dia_mes, checked } = itemMarcado;
 
         const date = new Date();
         const ano = date.getFullYear();
@@ -102,12 +121,9 @@ export default function Checklist() {
             await api.post(
                 '/marcaItemChecklist',
                 {
-                    descricao: item,
+                    checklistmensal_id: id,
                     data: dataItemChecklist,
-                    valor: valor,
-                    tipomovimento_id: 1,
-                    email: emailCk,
-                    checklistmensal_id: id
+                    email: emailCk
                 }
             )
 
@@ -166,7 +182,7 @@ export default function Checklist() {
                                     <BsClipboard2Check />
                                 </div>
                                 <div className="area-valoresTotalizadoresChecklist">
-                                    { totalGasto }
+                                    { totais.gasto }
                                 </div>
                             </div>
                             <div className="area-valorPendenteChecklist">
@@ -174,7 +190,7 @@ export default function Checklist() {
                                     <BsClockHistory />
                                 </div>
                                 <div className="area-valoresTotalizadoresChecklist">
-                                    { totalPendente }   
+                                    { totais.pendente }   
                                 </div>
                             </div>
                         </div>
