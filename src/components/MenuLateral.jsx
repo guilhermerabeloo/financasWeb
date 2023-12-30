@@ -1,5 +1,6 @@
 import './css/MenuLateral.css'
 import PropTypes from 'prop-types';
+import { Link } from "react-router-dom";
 import { GrAdd } from 'react-icons/gr'
 import { VscChecklist } from 'react-icons/vsc'
 import { LiaTrophySolid } from 'react-icons/lia'
@@ -18,10 +19,10 @@ export default function MenuLateral({ propToggleExpandirGrid, menuExpandido }) {
                 <button id="btn-addRegistro"><GrAdd className="icon-add"/></button>
                 <ul>
                     <li>
-                        <a href="#">
+                        <Link to="/checklist">
                             <span><VscChecklist /></span>
                             <p>Checklist</p>
-                        </a>
+                        </Link>
                     </li>
                     <li>
                         <a href="#">

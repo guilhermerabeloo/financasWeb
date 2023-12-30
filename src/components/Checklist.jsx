@@ -159,7 +159,7 @@ export default function Checklist() {
                                         <th style={{width: "10%"}}></th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody className="scrollable-tbody">
                                     {itensChecklist.map((item) => {
                                         return (
                                             <tr key={item.id}>

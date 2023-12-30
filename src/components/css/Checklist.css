@@ -12,26 +12,52 @@
 }
 
 .area-checklist {  
+    /* height: 100%; */
     width: 75%;
-    padding: 2%;
+    margin-top: 2%;
+    padding: 0 2% 2% 2%;
     box-sizing: border-box;
 }
 
 .checklist {
+    overflow-y: auto;
     height: 100%;
     background-color: var(--branco);
     border-radius: 20px;
     box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.3);
-    padding: 2%;
+    padding: 0 2% 2% 2%;
     box-sizing: border-box;
+    position: relative;
+}
+
+.checklist::-webkit-scrollbar {
+    width: 15px;
+    border-radius: 0 20px 20px 0;
+    background-color: var(--branco);
+}
+
+.checklist::-webkit-scrollbar-thumb {
+    background-color: #aaa;
+    border-radius: 20px;
 }
 
 .itens-checklist {
     width: 100%;
+    border-spacing: 0;
+}
+
+.scrollable-tbody {
+    max-height: calc(100% - 40px); 
+    overflow-y: auto;
 }
 
 .itens-checklist th {
-    border-bottom: solid 1px
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 2;
+    border-bottom: solid 1px;
+
 }
 
 .itens-checklist th, 
@@ -142,6 +168,10 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 2vh;
+}
+
+.scrollable-tbody input {
+    cursor: pointer;
 }
 
 .form-addItem input {
