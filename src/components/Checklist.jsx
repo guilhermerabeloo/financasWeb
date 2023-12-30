@@ -114,28 +114,48 @@ export default function Checklist() {
         const emailCk = decodeURIComponent(Cookies.get('userEmail'));
 
         if(checked) {
-            return
+            // return
+            try {
+                await api.post(
+                    '/desmarcaItemChecklist',
+                    {
+                        checklistmensal_id: id,
+                        email: emailCk
+                    }
+                )
+                    
+                console.log(emailCk, id)
+                toast.success('Checklist atualizado com sucesso!', {
+                    autoClose: 1000,
+                });
+            } catch(err) {
+                console.log(err)
+                toast.error('Erro ao desmarcar o item.', {
+                    autoClose: 3000,
+                });
+            }
+        } else {
+            try {
+                await api.post(
+                    '/marcaItemChecklist',
+                    {
+                        checklistmensal_id: id,
+                        data: dataItemChecklist,
+                        email: emailCk
+                    }
+                )
+    
+                toast.success('Checklist atualizado com sucesso!', {
+                    autoClose: 1000,
+                });
+            } catch(err) {
+                console.log(err)
+                toast.error('Erro ao marcar o item.', {
+                    autoClose: 3000,
+                });
+            }
         }
 
-        try {
-            await api.post(
-                '/marcaItemChecklist',
-                {
-                    checklistmensal_id: id,
-                    data: dataItemChecklist,
-                    email: emailCk
-                }
-            )
-
-            toast.success('Movimento cadastrado com sucesso!', {
-                autoClose: 3000,
-            });
-        } catch(err) {
-            console.log(err)
-            toast.error('Erro ao marcar o item.', {
-                autoClose: 3000,
-            });
-        }
 
         setAtualizaTabela(!atualizaTabela)
     }
