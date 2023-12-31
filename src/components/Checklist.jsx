@@ -1,4 +1,4 @@
-import { BsPencilSquare, BsBackspace, BsClipboard2Check, BsClockHistory  } from "react-icons/bs";
+import { BsBackspace, BsClipboard2Check, BsClockHistory, BsBookmarkCheckFill   } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { api } from '../lib/api';
 import { ToastContainer, toast } from 'react-toastify';
@@ -114,7 +114,6 @@ export default function Checklist() {
         const emailCk = decodeURIComponent(Cookies.get('userEmail'));
 
         if(checked) {
-            // return
             try {
                 await api.post(
                     '/desmarcaItemChecklist',
@@ -160,6 +159,11 @@ export default function Checklist() {
         setAtualizaTabela(!atualizaTabela)
     }
 
+    const reiniciarChecklist = async () => {
+        const itensMarcados = itensChecklist.filter((item) => item.checked == 1)
+        console.log(itensMarcados)
+    }
+
     return (
         <>
             <div className="container-checklist">
@@ -169,30 +173,37 @@ export default function Checklist() {
                 <div className="content-checklist">
                     <div className="area-checklist">
                         <div className="checklist">
-                            <table className="itens-checklist">
-                                <thead>
-                                    <tr>
-                                        <th style={{width: "10%"}}></th>
-                                        <th style={{width: "40%", textAlign: "start"}}>Item</th>
-                                        <th style={{width: "20%"}}>Valor</th>
-                                        <th style={{width: "20%"}}>Dia do mês</th>
-                                        <th style={{width: "10%"}}></th>
-                                    </tr>
-                                </thead>
-                                <tbody className="scrollable-tbody">
-                                    {itensChecklist.map((item) => {
-                                        return (
-                                            <tr key={item.id}>
-                                                <td><input type="checkbox" id={item.id} checked={item.checked} onChange={(event) => {marcaItemChecklist(event)}}/></td>
-                                                <td>{item.item}</td>
-                                                <td style={{textAlign: "center"}}>R$ {item.valor}</td>
-                                                <td style={{textAlign: "center"}}>{item.dia_mes}</td>
-                                                <td style={{textAlign: "center"}}><BsPencilSquare /><BsBackspace /></td>
-                                            </tr>
-                                        )
-                                    })}
-                                </tbody>
-                            </table>
+                            <div className="area-tabelaChecklist">
+                                <table className="itens-checklist">
+                                    <thead>
+                                        <tr>
+                                            <th style={{width: "10%"}}></th>
+                                            <th style={{width: "40%", textAlign: "start"}}>Item</th>
+                                            <th style={{width: "20%"}}>Valor</th>
+                                            <th style={{width: "20%"}}>Dia do mês</th>
+                                            <th style={{width: "10%"}}></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="scrollable-tbody">
+                                        {itensChecklist.map((item) => {
+                                            return (
+                                                <tr key={item.id}>
+                                                    <td><input type="checkbox" id={item.id} checked={item.checked} onChange={(event) => {marcaItemChecklist(event)}}/></td>
+                                                    <td>{item.item}</td>
+                                                    <td style={{textAlign: "center"}}>R$ {item.valor}</td>
+                                                    <td style={{textAlign: "center"}}>{item.dia_mes}</td>
+                                                    <td style={{textAlign: "center"}}><span className="icon-excluiItemChecklist"><BsBackspace /></span></td>
+                                                </tr>
+                                            )
+                                        })}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div className="area-reiniciarChecklist">
+                                <button id="btn-reiniciarChecklist" onClick={() => reiniciarChecklist()}>
+                                    Reiniciar checklist <span className="icon-reiniciarChecklist"><BsBookmarkCheckFill  /></span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <div className="area-checklistInfo">
