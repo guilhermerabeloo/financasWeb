@@ -6,6 +6,8 @@ import { VscChecklist } from 'react-icons/vsc'
 import { LiaTrophySolid } from 'react-icons/lia'
 import { FaMoneyCheckDollar } from 'react-icons/fa6'
 import { BsGraphUpArrow, BsChevronRight, BsChevronLeft } from 'react-icons/bs'
+import { ModalMovimento } from './ModalCadastroMovimento';
+import { useState } from 'react';
 
 MenuLateral.propTypes = {
     propToggleExpandirGrid: PropTypes.func,
@@ -13,10 +15,30 @@ MenuLateral.propTypes = {
 }
 
 export default function MenuLateral({ propToggleExpandirGrid, menuExpandido }) {
+    const [ modalActive, setModalActive ] = useState(false)
+
+    function ocultaModal() {
+        const cabecalhoChecklist = document.querySelectorAll('.itens-checklist th');
+        
+        console.log(modalActive)
+        cabecalhoChecklist.forEach((th) => {
+            if(modalActive) {
+                th.classList.add('hide')
+            } else {
+                th.classList.remove('hide')
+            }
+        })
+        setModalActive(!modalActive)
+    }
+
     return (
         <>
             <div className="menu-lateral">
-                <button id="btn-addRegistro"><GrAdd className="icon-add"/></button>
+                <ModalMovimento 
+                    modalOn={modalActive}
+                    closeMovimento={() => ocultaModal()}
+                />
+                <button id="btn-addRegistro" onClick={() => setModalActive(true)}><GrAdd className="icon-add"/></button>
                 <ul>
                     <li>
                         <Link to="/checklist">

@@ -1,0 +1,167 @@
+.modal-movimento {
+    display: flex;
+    padding: 3%;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+    width: 35rem;
+    height: 60%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+}
+
+.modal-movimento-fade {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
+
+.modal-movimento-fade,
+.modal-movimento {
+    transition: 0.5s;
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-movimento-fade.hide,
+.modal-movimento.hide {
+    transition: 0.5s;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-movimento.hide {
+    top: 0;
+}
+
+.itens-checklist th.hide {
+    z-index: 0;
+}
+
+.mdMovimento-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    height: 10%;
+}
+
+.mdMovimento-header .icon-fechar {
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.mdMovimento-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 70%;
+    width: 100%;
+
+}
+
+.mdMovimento-areaInput div {
+    display: flex;
+    flex-direction: column;
+}
+
+.mdMovimento-areaInput {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 3%;
+}
+
+.mdMovimento-areaInput input,
+.mdMovimento-areaInput select {
+    height: 30px;
+    padding: 0 10px 0 10px;
+    box-sizing: border-box;
+    background-color: var(--cinza-claro);
+    border-radius: 7px;
+    border: none;
+}
+
+.mdMovimento-areaInputDescricao {
+    width: 57%;
+}
+
+.mdMovimento-areaInputTipo {
+    width: 37%;
+}
+
+.mdMovimento-areaInputValor,
+.mdMovimento-areaInputData {
+    width: 47%;
+}
+
+.mdMovimento-tag {
+    width: 100%;
+}
+
+.mdMovimento-areaTag {
+    display: flex;
+    flex-direction: row;
+    padding: 0 10px 0 10px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.icon-tag {
+    width: 5%;
+}
+
+#tag {
+    width: 95%;
+    border-bottom: var(--azul-escuro2) solid 2px;
+    cursor: pointer;
+}
+
+.mdMovimento-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20%;
+}
+
+.mdMovimento-actions #mdMovimento-btnCancelar {
+    height: 30px;
+    width: 80px;
+    border: none;
+    border-radius: 7px;
+    background-color: var(--vermelho-escuro2);
+    color: var(--branco);
+    cursor: pointer;
+    opacity: 1;
+}
+
+.mdMovimento-actions #mdMovimento-btnAdicionar {
+    margin-left: 10px;
+    height: 30px;
+    width: 80px;
+    border: none;
+    border-radius: 7px;
+    background-color: var(--azul-escuro1);
+    color: var(--branco);
+    cursor: pointer;
+    opacity: 1;
+}
+
+.mdMovimento-actions button:hover {
+    opacity: .9
+}
+
+.mdMovimento-actions button:active {
+    transform: scale(0.95);
+}

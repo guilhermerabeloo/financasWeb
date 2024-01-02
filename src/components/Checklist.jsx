@@ -176,7 +176,7 @@ export default function Checklist() {
                 autoClose: 3000,
             });
         }
-        
+
         setAtualizaTabela(!atualizaTabela)
     }
 
