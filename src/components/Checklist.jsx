@@ -123,7 +123,6 @@ export default function Checklist() {
                     }
                 )
                     
-                console.log(emailCk, id)
                 toast.success('Checklist atualizado com sucesso!', {
                     autoClose: 1000,
                 });
@@ -155,13 +154,30 @@ export default function Checklist() {
             }
         }
 
-
         setAtualizaTabela(!atualizaTabela)
     }
 
     const reiniciarChecklist = async () => {
-        const itensMarcados = itensChecklist.filter((item) => item.checked == 1)
-        console.log(itensMarcados)
+        const emailCk = decodeURIComponent(Cookies.get('userEmail'));
+        try {
+            await api.post(
+                '/renovaChecklist',
+                {
+                    email: emailCk
+                }
+            )
+                
+            toast.success('Checklist reiniciado com sucesso!', {
+                autoClose: 1000,
+            });
+        } catch(err) {
+            console.log(err)
+            toast.error('Erro ao reiniciar o checklist.', {
+                autoClose: 3000,
+            });
+        }
+        
+        setAtualizaTabela(!atualizaTabela)
     }
 
     return (
