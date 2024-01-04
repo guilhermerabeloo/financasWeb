@@ -3,9 +3,8 @@ import user from '../assets/user.jpg';
 import logo from '../assets/logo.png'
 import Cookies from 'js-cookie';
 import { BiExit } from "react-icons/bi";
+import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
-import { ModalMovimento } from './ModalCadastroMovimento';
-import { useState } from 'react';
 
 export default function Header() {
     const navigate = useNavigate();
@@ -21,10 +20,10 @@ export default function Header() {
 
     return (
         <div className="header">
-            <div className="header-infoEmpresa">
+            <Link className="header-infoEmpresa" to="/home">
                 <img className="img-logo" src={logo} alt="Logo da plataforma" />
                 <h1>Finanças Web</h1>
-            </div>
+            </Link>
             <div className="header-infoUsuario">
                 <div><img id="user-image"src={user} alt="" /></div>
                 <p>{username}</p>

@@ -15,28 +15,14 @@ MenuLateral.propTypes = {
 }
 
 export default function MenuLateral({ propToggleExpandirGrid, menuExpandido }) {
-    const [ modalActive, setModalActive ] = useState(false)
-
-    function ocultaModal() {
-        const cabecalhoChecklist = document.querySelectorAll('.itens-checklist th');
-        
-        console.log(modalActive)
-        cabecalhoChecklist.forEach((th) => {
-            if(modalActive) {
-                th.classList.add('hide')
-            } else {
-                th.classList.remove('hide')
-            }
-        })
-        setModalActive(!modalActive)
-    }
+    const [ modalActive, setModalActive ] = useState(false);
 
     return (
         <>
             <div className="menu-lateral">
                 <ModalMovimento 
                     modalOn={modalActive}
-                    closeMovimento={() => ocultaModal()}
+                    closeMovimento={() => setModalActive(!modalActive)}
                 />
                 <button id="btn-addRegistro" onClick={() => setModalActive(true)}><GrAdd className="icon-add"/></button>
                 <ul>

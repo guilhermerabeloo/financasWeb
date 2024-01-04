@@ -6,7 +6,7 @@
     justify-content: center;
     background-color: white;
     width: 35rem;
-    height: 60%;
+    height: 70%;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -44,10 +44,6 @@
     top: 0;
 }
 
-.itens-checklist th.hide {
-    z-index: 0;
-}
-
 .mdMovimento-header {
     display: flex;
     justify-content: space-between;
@@ -71,20 +67,30 @@
 
 }
 
-.mdMovimento-areaInput div {
+.mdMovimento-areaInput div,
+.mdMovimento-areaInputRadio div {
     display: flex;
     flex-direction: column;
 }
 
-.mdMovimento-areaInput {
+.mdMovimento-areaInput,
+.mdMovimento-areaInputRadio {
     display: flex;
     justify-content: space-around;
     width: 100%;
     margin-bottom: 3%;
 }
 
+.mdMovimento-areaInput label,
+.mdMovimento-areaInputRadio label {
+    font-size: 12px;
+    margin-bottom: 3px;
+}
+
 .mdMovimento-areaInput input,
-.mdMovimento-areaInput select {
+.mdMovimento-areaInputRadio input,
+.mdMovimento-areaInput select,
+.mdMovimento-areaInputRadio select {
     height: 30px;
     padding: 0 10px 0 10px;
     box-sizing: border-box;
@@ -93,17 +99,46 @@
     border: none;
 }
 
+.mdMovimento-areaInputRadio input[type=radio] {
+    height: 20px;
+    padding: 0;
+    border-radius: 0px;
+    margin-right: 5px;
+}
+
+div.mdMovimento-areaRadioNao,
+div.mdMovimento-areaRadioSim {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 10%;
+}
+
+div.mdMovimento-areaRadio {
+    display: flex;
+    flex-direction: row;
+}
+
 .mdMovimento-areaInputDescricao {
-    width: 57%;
+    width: 68%;
 }
 
 .mdMovimento-areaInputTipo {
-    width: 37%;
+    width: 28%;
 }
 
 .mdMovimento-areaInputValor,
-.mdMovimento-areaInputData {
-    width: 47%;
+.mdMovimento-areaInputData,
+.mdMovimento-areaInputIsChecklist {
+    width: 33%;
+}
+
+.mdMovimento-areaInputRepetir {
+    width: 28%;
+}
+
+.mdMovimento-areaInputItemChecklist {
+    width: 63%;
 }
 
 .mdMovimento-tag {
