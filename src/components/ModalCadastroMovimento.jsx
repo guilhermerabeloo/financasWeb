@@ -12,15 +12,17 @@ ModalMovimento.propTypes = {
 }
 
 export function ModalMovimento({ modalOn, closeMovimento }) {
+    const [ mostraItensChecklist, setMostraItensChecklist ] = useState(false);
+    const [ mostraTag, setMostraTag ] = useState(false);
     const [ itensChecklist, setItensChecklist ] = useState([]);
     const [ tiposMovimento, setTiposMovimentos ] = useState([]);
     const [ novoMovimento, setNovoMovimento ] = useState({
         descricao: '',
-        tipo: '',
+        tipo: '0',
         data: '',
         valor: '',
         repetir: 1,
-        isChecklist: false,
+        isChecklist: '0',
         itemChecklist: null
     });
 
@@ -31,7 +33,7 @@ export function ModalMovimento({ modalOn, closeMovimento }) {
             try {
                 const response = await api.get(`/checklistUsuario/${emailCookie}`)
                 const data = response.data.data;
-                const dataDefault = [{id: 0, item: 'Selecione', valor: 0, dia_mes: 0, checked: 0}]
+                const dataDefault = [{id: null, item: 'Selecione', valor: null, dia_mes: 0, checked: 0}]
                 dataDefault.push(...data)
 
                 setItensChecklist(dataDefault)
@@ -59,21 +61,93 @@ export function ModalMovimento({ modalOn, closeMovimento }) {
 
 
     const handleChangeNovoMovimento = (event) => {
-        const { name, value } = event.target
-
+        const { name, value } = event.target;
         const movimento = {...novoMovimento};
         movimento[name] = value;
 
-        setNovoMovimento(movimento)
+        setNovoMovimento(movimento);
+
+        if(name == 'isChecklist'){
+            value == 0 ? setMostraItensChecklist(false) : setMostraItensChecklist(true)
+        } else if(name == 'tipo') {
+            value == 1 ? setMostraTag(true) : setMostraTag(false)
+        }
     }
-    // console.log(novoMovimento)
 
     const cadastraNovoMovimento = async (event) => {
         event.preventDefault();
         const emailCookie = decodeURIComponent(Cookies.get('userEmail'));
 
-        console.log(novoMovimento)
+        if(!novoMovimento.descricao || novoMovimento.tipo=="0" || !novoMovimento.data || !novoMovimento.valor || !novoMovimento.repetir) {
+            toast.warn('Há campos ainda não preenchidos.', {
+                autoClose: 2000,
+            });
+            return
+        }
+        if(novoMovimento.isChecklist == '1') {
+            if(novoMovimento.itemChecklist == 'Selecione') {
+                toast.warn('Há campos ainda não preenchidos.', {
+                    autoClose: 2000,
+                });
+                return
+            }
+        }
 
+        let dados = [];
+        for(let i = 0; i<novoMovimento.repetir; i++) {
+            const data = novoMovimento.data;
+            const ano = Number(data.slice(0, 4));
+            const mes = Number(data.slice(5, 7));
+            const dia = Number(data.slice(8, 10));
+            const parcela = new Date(ano, mes-1, dia);
+            parcela.setMonth(parcela.getMonth() + i)
+
+            const anoFormat = parcela.getFullYear();
+            const mesFormat = parcela.getMonth() + 1 < 10 ? `0${parcela.getMonth() + 1}` : parcela.getMonth() + 1
+            const diaFormat = parcela.getDate() < 10 ? `0${parcela.getDate()}` : parcela.getDate()
+
+            const parcelaFormat = `${anoFormat}-${mesFormat}-${diaFormat}`
+        
+            dados.push({
+                descricao: novoMovimento.descricao,
+                data: parcelaFormat,
+                valor: novoMovimento.valor,
+                tipomovimento_id: novoMovimento.tipo,
+                checklistmensal_id: novoMovimento.itemChecklist == 'Selecione' ? null : novoMovimento.itemChecklist
+            })
+        }
+
+        try {
+            await api.post(
+                `/criaMovimento`,
+                {
+                    email: emailCookie,
+                    dados: dados
+                }
+            )
+
+            closeMovimento(false);
+            setMostraTag(false);
+            setMostraItensChecklist(false);
+            setNovoMovimento({
+                descricao: '',
+                tipo: '0',
+                data: '',
+                valor: '',
+                repetir: 1,
+                isChecklist: '0',
+                itemChecklist: 'Selecione'
+            });
+
+            toast.success('Movimento cadastrado com sucesso!', {
+                autoClose: 2000,
+            });
+        } catch(err) {
+            console.log(err)
+            toast.error('Erro ao cadastrar o movimento.', {
+                autoClose: 2000,
+            });
+        }
     }
 
     return (
@@ -119,25 +193,25 @@ export function ModalMovimento({ modalOn, closeMovimento }) {
                                 <label htmlFor="mdMovimento-isChecklist">Compõe checklist</label>   
                                 <div className="mdMovimento-areaRadio">
                                     <div className="mdMovimento-areaRadioNao">
-                                        <input type="radio" id="mdMovimento-isChecklistNao" name="isChecklist" value="0" onChange={(event) => handleChangeNovoMovimento(event)}/>
+                                        <input type="radio" id="mdMovimento-isChecklistNao" name="isChecklist" checked={novoMovimento.isChecklist == 0} value="0" onChange={(event) => handleChangeNovoMovimento(event)}/>
                                         <label htmlFor="mdMovimento-isChecklistNao">Não</label>
                                     </div>
                                     <div className="mdMovimento-areaRadioSim">
-                                        <input type="radio" id="mdMovimento-isChecklistSim" name="isChecklist" value="1" onChange={(event) => handleChangeNovoMovimento(event)}/>
+                                        <input type="radio" id="mdMovimento-isChecklistSim" name="isChecklist" checked={novoMovimento.isChecklist == 1} value="1" onChange={(event) => handleChangeNovoMovimento(event)}/>
                                         <label htmlFor="mdMovimento-isChecklistSim">Sim</label>
                                     </div>
                                 </div>
                             </div>
-                            <div className="mdMovimento-areaInputItemChecklist">
-                                <label htmlFor="mdMovimento-itemChecklist">Item checklist</label>
-                                <select name="itemChecklist" id="mdMovimento-itemChecklist" value={novoMovimento.itemChecklist} onChange={(event) => handleChangeNovoMovimento(event)}>
+                            <div className="mdMovimento-areaInputItemChecklist" >
+                                <label htmlFor="mdMovimento-itemChecklist" className={`${mostraItensChecklist ? '' : 'ocultaItemChecklist'}`}>Item checklist</label>
+                                <select name="itemChecklist" className={`${mostraItensChecklist ? '' : 'ocultaItemChecklist'}`} id="mdMovimento-itemChecklist" value={novoMovimento.itemChecklist} onChange={(event) => handleChangeNovoMovimento(event)}>
                                     {itensChecklist.map(item => (
                                         <option key={item.id} value={item.id}>{item.item}</option>
                                     ))}
                                 </select>
                             </div>
                         </div>
-                        <div className="mdMovimento-tag">
+                        <div className={`mdMovimento-tag ${!mostraTag && 'hide'}`}>
                             <div className="mdMovimento-areaTag">
                                 <BsTag className='icon-tag'/>
                                 <div id='tag'>Adicione uma tag</div>

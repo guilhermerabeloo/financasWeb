@@ -81,6 +81,11 @@
     margin-bottom: 3%;
 }
 
+/* .mdMovimento-areaInputRadio {
+    margin-left: 2%;
+    justify-content: start;
+} */
+
 .mdMovimento-areaInput label,
 .mdMovimento-areaInputRadio label {
     font-size: 12px;
@@ -133,16 +138,25 @@ div.mdMovimento-areaRadio {
     width: 33%;
 }
 
+.ocultaItemChecklist {
+    display: none;
+}
+
 .mdMovimento-areaInputRepetir {
     width: 28%;
 }
 
 .mdMovimento-areaInputItemChecklist {
+    display: none;
     width: 63%;
 }
 
 .mdMovimento-tag {
     width: 100%;
+}
+
+.mdMovimento-tag.hide {
+    display: none;
 }
 
 .mdMovimento-areaTag {
