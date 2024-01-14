@@ -11,7 +11,6 @@ export default function Checklist() {
     const [ novoItemChecklist, setNovoItemChecklist ] = useState({email: '', item: '', valor: '' , dia_mes: ''});
     const [ totais, setTotais ] = useState({gasto: '0,00', pendente: '0,00'})
 
-
     const email = decodeURIComponent(Cookies.get('userEmail'));
     useEffect(() => {
         async function getItensChecklist() {
