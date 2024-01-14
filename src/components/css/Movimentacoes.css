@@ -1,0 +1,141 @@
+.area-tituloMovimentacoes {
+    display: flex;
+    align-items: end;
+    margin-left: 2%;
+    height: 5%;
+    color: var(--azul-claro);
+}
+
+.content-movimentacoes {
+    display: flex;
+    height: 100%;
+}
+
+.area-movimentos {
+    width: 70%;
+    padding: 2%;
+    box-sizing: border-box;
+}
+
+.area-filtrosMovimentos {
+    display: flex;
+    height: 10%;
+}
+
+.area-botoesFiltrosMovimentos {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 60%;
+    height: 100%;
+}
+
+.area-botoesFiltrosMovimentos button {
+    height: 25px;
+    width: 100px;
+    border: none;
+    border-radius: 6px;
+    margin-right: 15px;
+    background-color: #D0D0D0;
+}
+
+.area-botoesFiltrosData {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 40%;
+    height: 100%;
+}
+
+.movimentos {
+    height: 90%;
+    border-radius: 20px;
+    background-color: var(--branco);
+}
+
+.itensMovimento {
+    width: 100%;
+}
+
+.itensMovimento th {
+    position: sticky;
+    top: 0;
+    background-color: var(--branco);
+    border-bottom: solid 1px;
+}
+
+.itensMovimento th, 
+.itensMovimento td{
+    height: 40px;
+}
+
+.scrollable-tbody input {
+    cursor: pointer;
+}
+
+.area-tabelaMovimentos {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    overflow-y: auto;
+    height: 100%;
+    background-color: var(--branco);
+    border-radius: 20px 20px 0 0;
+    padding: 0 2% 0 2%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.area-tabelaMovimentos::-webkit-scrollbar {
+    width: 15px;
+    border-radius: 0 20px 20px 0;
+    background-color: var(--branco);
+}
+
+.area-tabelaMovimentos::-webkit-scrollbar-thumb {
+    background-color: #aaa;
+    border-radius: 20px;
+}
+
+.area-movimentosRelatorios {
+    width: 30%;
+}
+
+.area-graficoReceitasDespesas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    margin-top: 20%;
+    height: 40%;
+    background-color: var(--branco);
+}
+
+.area-tituloGrafico {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10%;
+    width: 100%;
+    border-radius: 20px 20px 0 0;
+    background-color: #D0D0D0;
+}
+
+.area-grafico {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90%;
+}
+
+.area-graficoTags {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    margin-top: 3%;
+    height: 40%;
+    background-color: var(--branco);
+}

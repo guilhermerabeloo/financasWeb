@@ -39,10 +39,10 @@ export default function MenuLateral({ propToggleExpandirGrid, menuExpandido }) {
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link to="/movimentacoes">
                             <span><FaMoneyCheckDollar /></span>
-                            <p>Extrato</p>
-                        </a>
+                            <p>Movimentações</p>
+                        </Link>
                     </li>
                     <li>
                         <a href="#">

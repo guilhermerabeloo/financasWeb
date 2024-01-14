@@ -29,12 +29,6 @@
     grid-area: content;
 }
 
-/* .app-content {
-    display: flex;
-    flex-direction: row;
-    align-items: end;
-} */
-
 @media screen and (max-width: 480px) {
     .content {
         display: flex;
