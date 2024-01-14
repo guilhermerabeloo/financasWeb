@@ -1,0 +1,109 @@
+.movimentacoes-titulo {
+    width: 100%;
+    height: 10%;
+    border-bottom: solid .3px;
+    border-color: var(--azul-claro);
+}
+
+.container-acessoRapido .movimentacoes-content {
+    display: flex;
+    overflow-y: auto;
+    flex-direction: column;
+    justify-content: start;
+    max-height: 40vh;
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.container-acessoRapido .movimentacoes-content::-webkit-scrollbar {
+    width: 5px;
+}
+
+.container-acessoRapido .movimentacoes-content::-webkit-scrollbar-thumb {
+    background-color: #aaa;
+    border-radius: 10px;
+}
+
+.container-acessoRapido .movimentacoes-content {
+    width: 100%;
+}
+
+.container-acessoRapido .item-movimento {
+    display: flex;
+    font-size: 14px;
+}
+
+.container-acessoRapido .area-etapasExtrato {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 10%;
+}
+
+.container-acessoRapido .area-etapasExtrato .checkpoint {
+    height: 6px;    
+    width: 6px;
+    border-radius: 50%;
+    background-color: var(--amarelo);
+    color: var(--amarelo);
+}
+
+.container-acessoRapido .area-etapasExtrato .route {
+    height: 30px;
+    margin: 5px 0 5px 0;
+    width: 4px;
+    background-color: var(--preto);
+    color: var(--preto);
+}
+
+.container-acessoRapido .area-descricaoMovimento {
+    display: flex;
+    flex-direction: column;
+    vertical-align: top;
+    width: 60%;
+}
+
+.container-acessoRapido .area-descricaoMovimento .acessoRapido-dataMovimento {
+    margin-top: 3apx;
+    font-size: 11px;
+}
+
+.container-acessoRapido .area-valorMovimento {
+    width: 30%;
+    text-align: end;
+}
+
+.container-acessoRapido .area-valorMovimento.receita {
+    color: #0FBA00;
+}
+
+.container-acessoRapido .area-valorMovimento.despesa {
+    color: var(--vermelho-escuro2);
+}
+
+.movimentacoes-seguirLink {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: end;
+    padding-right: 3%;
+    box-sizing: border-box;
+    width: 100%;
+    height: 6vh;
+    color: var(--azul-claro);
+    font-size: 25px;
+}
+
+.link-movimentacoes {
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+}
+
+.link-movimentacoes:visited {
+    text-decoration: none;
+    outline: none;
+    color: inherit;
+}
