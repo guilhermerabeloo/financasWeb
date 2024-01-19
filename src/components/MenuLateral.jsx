@@ -33,10 +33,10 @@ export default function MenuLateral({ propToggleExpandirGrid, menuExpandido }) {
                         </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link to="/objetivo">
                             <span><LiaTrophySolid /></span>
-                            <p>Objetivos</p>
-                        </a>
+                            <p>Objetivos</p>                        
+                        </Link>
                     </li>
                     <li>
                         <Link to="/movimentacoes">
