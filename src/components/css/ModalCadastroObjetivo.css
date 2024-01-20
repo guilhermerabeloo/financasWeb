@@ -1,0 +1,271 @@
+.modal-objetivo {
+    display: flex;
+    padding: 2% 4%;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+    width: 50rem;
+    height: 85%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+}
+
+.modal-objetivo-fade {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
+
+.modal-objetivo-fade,
+.modal-objetivo {
+    transition: 0.5s;
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-objetivo-fade.hide,
+.modal-objetivo.hide {
+    transition: 0.5s;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-objetivo.hide {
+    top: 0;
+}
+
+
+.mdObjetivo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    height: 15%;
+}
+
+.mdObjetivo-header .icon-fechar {
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.mdObjetivo-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    height: 75%;
+    width: 100%;
+}
+
+.mdObjetivo-areaPreenchimento {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    height: 40%;
+    width: 100%;
+}
+
+.mdObjetivo-areaTipoObjetivo {
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    width: 100%;
+}
+
+.mdObjetivo-areaInfoObjetivo {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    width: 100%;
+}
+
+.mdObjetivo-areaInput {
+    display: flex;
+    flex-direction: column;
+}
+
+.mdObjetivo-content label {
+    font-size: 14px;
+}
+
+.mdObjetivo-label {
+    margin-bottom: 10px;
+}
+
+.mdObjetivo-areaInput input {
+    width: 130px;
+    height: 30px;
+    padding: 0 10px 0 10px;
+    box-sizing: border-box;
+    background-color: var(--cinza-claro);
+    border-radius: 7px;
+    border: none;
+}
+
+.mdObjetivo-areaRadio input[type=radio] {
+    height: 20px;
+    padding: 0;
+    border-radius: 0px;
+    margin-right: 5px;
+}
+
+div.mdObjetivo-areaRadio {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 10%;
+}
+
+.mdObjetivo-areaCaminhoObjetivo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60%;
+    width: 100%;
+}
+
+.mdObjetivo-caminho {
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    height: 100%;
+    max-width: 82%;
+}
+
+.mdObjetivo-caminho::-webkit-scrollbar {
+    height: 15px;
+}
+
+.mdObjetivo-caminho::-webkit-scrollbar-thumb {
+    background-color: #aaa;
+    border-radius: 10px;
+}
+
+.mdObjetivo-etapaCaminho {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 170px;
+}
+
+.elementsCaminho {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 9%;
+    justify-content: space-between;
+}
+
+.left,
+.right {
+    width: 50px;
+    height: 10px;
+    background-color: var(--preto);
+}
+
+.circule {
+    background-color: var(--amarelo);
+    border-radius: 50%;
+    margin: 0 15px 0 15px;
+    height: 20px;
+    width: 20px;
+}
+
+.competencia {
+    color: var(--cinza-escuro);
+    margin-bottom: 5%;
+    font-size: 13px;
+}
+
+.meta {
+    margin-bottom: 8%;
+    font-size: 19px;
+}
+
+.acumulado {
+    color: var(--cinza-escuro);
+    font-size: 13px;
+}
+
+.performance {
+    font-size: 11px;
+}
+
+.mdObjetivo-areaImageTrofeu {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    width: 18%;
+}
+
+#trofeu-image {
+    height: 100px;
+    width: 100px;
+}
+
+.mdObjetivo-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+}
+
+.mdObjetivo-actions #mdObjetivo-btnCancelar {
+    height: 30px;
+    width: 80px;
+    border: none;
+    border-radius: 7px;
+    background-color: var(--vermelho-escuro2);
+    color: var(--branco);
+    cursor: pointer;
+    opacity: 1;
+}
+
+.mdObjetivo-actions #mdObjetivo-btnAdicionar {
+    margin-left: 10px;
+    height: 30px;
+    width: 80px;
+    border: none;
+    border-radius: 7px;
+    background-color: var(--azul-escuro1);
+    color: var(--branco);
+    cursor: pointer;
+    opacity: 1;
+}
+
+.mdObjetivo-areaInfoObjetivo #mdObjetivo-btnCalcular {
+    margin-left: 10px;
+    height: 30px;
+    width: 80px;
+    border: none;
+    border-radius: 7px;
+    background-color: var(--amarelo);
+    color: var(--branco);
+    cursor: pointer;
+    opacity: 1; 
+}
+
+.mdObjetivo-actions #mdObjetivo-btnAdicionar:hover,
+.mdObjetivo-actions #mdObjetivo-btnCancelar:hover,
+.mdObjetivo-areaInfoObjetivo #mdObjetivo-btnCalcular:hover {
+    opacity: .9
+}
+
+.mdObjetivo-actions #mdObjetivo-btnAdicionar:active,
+.mdObjetivo-actions #mdObjetivo-btnCancelar:active,
+.mdObjetivo-areaInfoObjetivo #mdObjetivo-btnCalcular:active {
+    transform: scale(0.95);
+}

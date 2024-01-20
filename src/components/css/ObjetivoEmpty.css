@@ -3,6 +3,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    height: 95%;
+    width: 100%;
 }
 
 .container-objetivoEmpty p{
