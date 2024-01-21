@@ -1,19 +1,17 @@
+.container-modalObjetivo {
+    box-sizing: border-box;
+    padding: 2% 2% 0 2%;
+}
+
 .modal-objetivo {
     display: flex;
-    padding: 2% 4%;
+    padding: 2%;
     box-sizing: border-box;
     flex-direction: column;
     justify-content: center;
     background-color: white;
-    width: 50rem;
-    height: 85%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    height: 95%;
     border-radius: 10px;
-    box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.3);
-    z-index: 2;
 }
 
 .modal-objetivo-fade {
@@ -33,23 +31,12 @@
     pointer-events: all;
 }
 
-.modal-objetivo-fade.hide,
-.modal-objetivo.hide {
-    transition: 0.5s;
-    opacity: 0;
-    pointer-events: none;
-}
-
-.modal-objetivo.hide {
-    top: 0;
-}
-
-
 .mdObjetivo-header {
     display: flex;
     justify-content: space-between;
     align-items: start;
-    height: 15%;
+    color: var(--azul-claro);
+    height: 5%;
 }
 
 .mdObjetivo-header .icon-fechar {
@@ -63,7 +50,7 @@
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    height: 75%;
+    height: 95%;
     width: 100%;
 }
 
@@ -72,20 +59,24 @@
     flex-direction: column;
     align-items: start;
     justify-content: start;
-    height: 40%;
-    width: 100%;
-}
-
-.mdObjetivo-areaTipoObjetivo {
-    display: flex;
-    flex-direction: column;
     height: 50%;
     width: 100%;
 }
 
+.mdObjetivo-areaTipoObjetivo,
+.mdObjetivo-areaTituloObjetivo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+    width: 100%;
+}
+
+.mdObjetivo-areaTituloObjetivo {
+    flex-direction: row;
+}
+
 .mdObjetivo-areaInfoObjetivo {
     display: flex;
-    justify-content: space-between;
     align-items: end;
     width: 100%;
 }
@@ -93,6 +84,15 @@
 .mdObjetivo-areaInput {
     display: flex;
     flex-direction: column;
+    margin-right: 20px;
+}
+
+#mdObjetivo-inpidobjetivo {
+    width: 7.4vw;    
+}
+
+#mdObjetivo-inpnomeobjetivo {
+    width: 50.7vw;    
 }
 
 .mdObjetivo-content label {
@@ -100,11 +100,12 @@
 }
 
 .mdObjetivo-label {
-    margin-bottom: 10px;
+    margin-bottom: 3px;
+    font-size: 14px;
 }
 
 .mdObjetivo-areaInput input {
-    width: 130px;
+    width: 190px;
     height: 30px;
     padding: 0 10px 0 10px;
     box-sizing: border-box;
@@ -124,14 +125,14 @@ div.mdObjetivo-areaRadio {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-right: 10%;
+    margin-right: 3%;
 }
 
 .mdObjetivo-areaCaminhoObjetivo {
     display: flex;
-    justify-content: center;
+    justify-content: end;
     align-items: center;
-    height: 60%;
+    height: 50%;
     width: 100%;
 }
 
@@ -144,7 +145,7 @@ div.mdObjetivo-areaRadio {
 }
 
 .mdObjetivo-caminho::-webkit-scrollbar {
-    height: 15px;
+    height: 5px;
 }
 
 .mdObjetivo-caminho::-webkit-scrollbar-thumb {
@@ -165,14 +166,14 @@ div.mdObjetivo-areaRadio {
     display: flex;
     width: 100%;
     align-items: center;
-    margin-bottom: 9%;
+    margin-bottom: 7%;
     justify-content: space-between;
 }
 
 .left,
 .right {
     width: 50px;
-    height: 10px;
+    height: 7px;
     background-color: var(--preto);
 }
 
@@ -180,28 +181,28 @@ div.mdObjetivo-areaRadio {
     background-color: var(--amarelo);
     border-radius: 50%;
     margin: 0 15px 0 15px;
-    height: 20px;
-    width: 20px;
+    height: 17px;
+    width: 17px;
 }
 
 .competencia {
     color: var(--cinza-escuro);
     margin-bottom: 5%;
-    font-size: 13px;
+    font-size: 11px;
 }
 
 .meta {
     margin-bottom: 8%;
-    font-size: 19px;
+    font-size: 16px;
 }
 
 .acumulado {
     color: var(--cinza-escuro);
-    font-size: 13px;
+    font-size: 12px;
 }
 
 .performance {
-    font-size: 11px;
+    font-size: 10px;
 }
 
 .mdObjetivo-areaImageTrofeu {
@@ -218,8 +219,8 @@ div.mdObjetivo-areaRadio {
 
 .mdObjetivo-actions {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: end;
+    align-items: end;
     height: 10%;
 }
 

@@ -10,6 +10,7 @@ import Home from '../components/Home.jsx'
 import Checklist from '../components/Checklist.jsx'
 import Movimentacoes from '../components/Movimentacoes.jsx'
 import Objetivo from '../components/Objetivo.jsx'
+import CadastroObjetivo from '../components/CadastroObjetivo.jsx'
 
 const router = createBrowserRouter([
   {
@@ -30,7 +31,16 @@ const router = createBrowserRouter([
       },
       {
         path: '/objetivo',
-        element: <Objetivo />
+        children: [
+          {
+            path: 'my',
+            element: <Objetivo />
+          },
+          {
+            path: 'criar',
+            element: <CadastroObjetivo />
+          },
+        ]
       }
     ]
   },

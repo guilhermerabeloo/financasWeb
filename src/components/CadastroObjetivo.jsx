@@ -1,17 +1,12 @@
-import './css/ModalCadastroObjetivo.css'
-import PropTypes from 'prop-types';
+import './css/CadastroObjetivo.css'
 import trofeu from '../assets/trofeu.png';
-import { BsX } from 'react-icons/bs';
 import { useState } from 'react';
 
-ModalCadastroObjetivo.propTypes = {
-    modalOn: PropTypes.bool,
-    closeObjetivo: PropTypes.func
-}
-
-export default function ModalCadastroObjetivo({ modalOn, closeObjetivo }) {
+export default function CadastroObjetivo() {
     const [ etapasObjetivo, setEtapasObjetivo ] = useState([]);
     const [ formNovoObjetivo, setFormNovoObjetivo ] = useState({
+        id: '',
+        nome: '',
         tipoObjetivo: 'valor',
         dataInicial: '',
         dataFinal: '',
@@ -74,14 +69,22 @@ export default function ModalCadastroObjetivo({ modalOn, closeObjetivo }) {
     return (
         <>
             <div className="container-modalObjetivo">
-                <div className={`modal-objetivo-fade  ${modalOn ? '' : 'hide'}`} onClick={closeObjetivo}></div>
-                <div className={`modal-objetivo ${modalOn ? '' : 'hide'}`}>
-                    <div className="mdObjetivo-header">
-                        <h3 className="mdObjetivo-titulo">Cadastrar objetivo</h3>
-                        <BsX className='icon-fechar' onClick={() => closeObjetivo(false)}/>
-                    </div>
+                <div className="mdObjetivo-header">
+                    <h3 className="mdObjetivo-titulo">Cadastrar objetivo</h3>
+                </div>
+                <div className="modal-objetivo">
                     <div className="mdObjetivo-content">
                         <div className="mdObjetivo-areaPreenchimento">
+                            <div className="mdObjetivo-areaTituloObjetivo">
+                                <div className="mdObjetivo-areaInput">
+                                    <label className="mdObjetivo-label" htmlFor="mdObjetivo-inpidobjetivo">Id:</label>
+                                    <input type="text" name="id" value={formNovoObjetivo.id} onChange={(event) => handleChangeNovoObjetivo(event)} id="mdObjetivo-inpidobjetivo" readOnly="true" disabled="true"/>
+                                </div>
+                                <div className="mdObjetivo-areaInput">
+                                    <label className="mdObjetivo-label" htmlFor="mdObjetivo-inpnomeobjetivo">Título:</label>
+                                    <input type="text" name="nome" value={formNovoObjetivo.nome} onChange={(event) => handleChangeNovoObjetivo(event)} id="mdObjetivo-inpnomeobjetivo" placeholder="Ex: Viagem para a Europa"/>
+                                </div>
+                            </div>
                             <div className="mdObjetivo-areaTipoObjetivo">
                                 <p className="mdObjetivo-label" htmlFor="">Tipo de objetivo</p>
                                 <div className="mdObjetivo-areaRadio">
@@ -143,7 +146,7 @@ export default function ModalCadastroObjetivo({ modalOn, closeObjetivo }) {
                         </div>
                     </div>
                     <div className="mdObjetivo-actions">
-                        <button id="mdObjetivo-btnCancelar" onClick={() => closeObjetivo(false)}>Cancelar</button>
+                        <button id="mdObjetivo-btnCancelar">Cancelar</button>
                         <button id="mdObjetivo-btnAdicionar" onClick={(event) => cadastraNovoObjetivo(event)}>Adicionar</button>
                     </div>
                 </div>
