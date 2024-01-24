@@ -5,7 +5,7 @@
     border-color: var(--azul-claro);
 }
 
-.checklist-content {
+.checklistAr-content {
     display: flex;
     overflow-y: auto;
     flex-direction: column;
@@ -16,11 +16,11 @@
     box-sizing: border-box;
 }
 
-.checklist-content::-webkit-scrollbar {
+.checklistAr-content::-webkit-scrollbar {
     width: 5px;
 }
 
-.checklist-content::-webkit-scrollbar-thumb {
+.checklistAr-content::-webkit-scrollbar-thumb {
     background-color: #aaa;
     border-radius: 10px;
 }
@@ -31,6 +31,7 @@
     margin-bottom: 7px;
     color: var(--azul);
     font-size: 14px;
+    height: 100%;
 }
 
 .item-checklist p {

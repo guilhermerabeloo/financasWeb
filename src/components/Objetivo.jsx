@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import Cookies from 'js-cookie';
 import { api } from '../lib/api';
 import ObjetivoEmpty from "./ObjetivoEmpty";
+import { ToastContainer } from "react-toastify";
 
 export default function Objetivo() {
     const [ objetivo, setObjetivo ] = useState([]);
     
     const email = decodeURIComponent(Cookies.get('userEmail'));
     useEffect(() => {
-        async function getMovimentos() {
+        async function getObjetivo() {
             try {
                 const response = await api.get(`/buscaObjetivo/${email}`)
                 const data = response.data.data;
@@ -18,7 +19,7 @@ export default function Objetivo() {
                 console.log(error)
             }
         }
-        getMovimentos()
+        getObjetivo()
     }, [email])
 
     if(objetivo.length == 0) {
@@ -27,6 +28,7 @@ export default function Objetivo() {
                 <div className="container-objetivo">
                     <ObjetivoEmpty />
                 </div>
+                <ToastContainer pauseOnHover={false}/>
             </>
         )
     } else {
@@ -34,6 +36,7 @@ export default function Objetivo() {
             <>
                 <div className="container-objetivo">
                 </div>
+                <ToastContainer pauseOnHover={false}/>
             </>
         )
     }

@@ -31,7 +31,7 @@ export default function MovimentacoesAcessoRapido() {
                 <div className="movimentacoes-titulo">
                     <h4>Últimas movimentações</h4>
                 </div>
-                <div className="movimentacoes-content">
+                <div className="movimentacoesAr-content">
                     {movimentos.map((movimento, i) => {
                         return (
                             <div key={i} className="item-movimento">

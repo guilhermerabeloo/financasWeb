@@ -1,27 +1,49 @@
 import './css/CadastroObjetivo.css'
 import trofeu from '../assets/trofeu.png';
-import { useState } from 'react';
+import Cookies from 'js-cookie';
+import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { api } from '../lib/api';
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function CadastroObjetivo() {
     const [ etapasObjetivo, setEtapasObjetivo ] = useState([]);
     const [ formNovoObjetivo, setFormNovoObjetivo ] = useState({
         id: '',
         nome: '',
-        tipoObjetivo: 'valor',
+        tipoObjetivo: '1',
         dataInicial: '',
         dataFinal: '',
         valorInicial: 0,
         valorFinal: 0
     })
 
+    const location = useLocation();
+    const objetivoTemporario = location.state?.objetivoTemp;
+    useEffect(() => {
+        if(objetivoTemporario) {
+            const formTemp = {
+                id: objetivoTemporario.id,
+                nome: objetivoTemporario.nome,
+                tipoObjetivo: objetivoTemporario.objetivo,
+                dataInicial: objetivoTemporario.datainicio,
+                dataFinal: objetivoTemporario.datafinal,
+                valorInicial: objetivoTemporario.valorinicio,
+                valorFinal: objetivoTemporario.valorfinal
+            }
+    
+            setFormNovoObjetivo(formTemp)   
+        }
+    }, [objetivoTemporario])
+
     const handleChangeNovoObjetivo = (event) => {
         const name = event.target.name;
         const value = event.target.value;
 
         const formAntigo = {...formNovoObjetivo};
-        formAntigo[name] = value
+        formAntigo[name] = value;
 
-        setFormNovoObjetivo(formAntigo)
+        setFormNovoObjetivo(formAntigo);
     }
 
     function calcularQuantidadeMeses(dataInicial, dataFinal) {
@@ -37,7 +59,7 @@ export default function CadastroObjetivo() {
         return quantidadeMeses;
       }
 
-    const calcularObjetivo = () => {
+    const calcularObjetivo = async () => {
         const diferencaMeses = calcularQuantidadeMeses(formNovoObjetivo.dataInicial, formNovoObjetivo.dataFinal);
         const diferencaValores = formNovoObjetivo.valorFinal - formNovoObjetivo.valorInicial;
         const metaMensal = diferencaValores / diferencaMeses;
@@ -60,6 +82,48 @@ export default function CadastroObjetivo() {
         }
 
         setEtapasObjetivo(mesesObjetivo)
+
+        try {
+            const emailCk = decodeURIComponent(Cookies.get('userEmail'));
+
+            const idObjetivo = await api.post(
+                `/criaCabecalhoObjetivo`,
+                {
+                    "email": emailCk,
+                    "id": formNovoObjetivo.id,
+                    "nome": formNovoObjetivo.nome,
+                    "dataInicio": formNovoObjetivo.dataInicial,
+                    "dataFinal": formNovoObjetivo.dataFinal,
+                    "valorInicial": formNovoObjetivo.valorInicial,
+                    "valorFinal": formNovoObjetivo.valorFinal,
+                    "tipoObjetivo": formNovoObjetivo.tipoObjetivo
+                  }
+            )
+
+            toast.success('Informações salvas!', {
+                autoClose: 1000,
+            });
+
+            const formAntigo = {...formNovoObjetivo};
+            formAntigo['id'] = idObjetivo.data.objetivo
+    
+            setFormNovoObjetivo(formAntigo)
+        } catch(err) {
+            toast.error('Erro ao salvar informações!', {
+                autoClose: 1000,
+            });
+
+            setEtapasObjetivo([]);
+            setFormNovoObjetivo({
+                id: '',
+                nome: '',
+                tipoObjetivo: 1,
+                dataInicial: '',
+                dataFinal: '',
+                valorInicial: 0,
+                valorFinal: 0
+            })
+        }
     }
 
     const cadastraNovoObjetivo = (event) => {
@@ -78,7 +142,7 @@ export default function CadastroObjetivo() {
                             <div className="mdObjetivo-areaTituloObjetivo">
                                 <div className="mdObjetivo-areaInput">
                                     <label className="mdObjetivo-label" htmlFor="mdObjetivo-inpidobjetivo">Id:</label>
-                                    <input type="text" name="id" value={formNovoObjetivo.id} onChange={(event) => handleChangeNovoObjetivo(event)} id="mdObjetivo-inpidobjetivo" readOnly="true" disabled="true"/>
+                                    <input type="text" name="id" value={formNovoObjetivo.id} onChange={(event) => handleChangeNovoObjetivo(event)} id="mdObjetivo-inpidobjetivo" readOnly={true} disabled={true}/>
                                 </div>
                                 <div className="mdObjetivo-areaInput">
                                     <label className="mdObjetivo-label" htmlFor="mdObjetivo-inpnomeobjetivo">Título:</label>
@@ -89,15 +153,15 @@ export default function CadastroObjetivo() {
                                 <p className="mdObjetivo-label" htmlFor="">Tipo de objetivo</p>
                                 <div className="mdObjetivo-areaRadio">
                                     <div className="mdObjetivo-areaRadio">
-                                        <input type="radio" id="mdObjetivo-porValor" name="tipoObjetivo" value="valor" checked={formNovoObjetivo.tipoObjetivo == 'valor'} onChange={(event) => handleChangeNovoObjetivo(event)}/>
+                                        <input type="radio" id="mdObjetivo-porValor" name="tipoObjetivo" value='1' checked={formNovoObjetivo.tipoObjetivo == '1'} onChange={(event) => handleChangeNovoObjetivo(event)}/>
                                         <label htmlFor="mdObjetivo-porValor">Por valor final</label>
                                     </div>
                                     <div className="mdObjetivo-areaRadio">
-                                        <input type="radio" id="mdObjetivo-porMes" name="tipoObjetivo" value="mensal" checked={formNovoObjetivo.tipoObjetivo == 'mensal'} onChange={(event) => handleChangeNovoObjetivo(event)}/>
+                                        <input type="radio" id="mdObjetivo-porMes" name="tipoObjetivo" value='2' checked={formNovoObjetivo.tipoObjetivo == '2'} onChange={(event) => handleChangeNovoObjetivo(event)}/>
                                         <label htmlFor="mdObjetivo-porMes">Por meta mensal</label>
                                     </div>  
                                     <div className="mdObjetivo-areaRadio">
-                                        <input type="radio" id="mdObjetivo-personalizado" name="tipoObjetivo" value="personalizado" checked={formNovoObjetivo.tipoObjetivo == 'personalizado'} onChange={(event) => handleChangeNovoObjetivo(event)}/>
+                                        <input type="radio" id="mdObjetivo-personalizado" name="tipoObjetivo" value='3' checked={formNovoObjetivo.tipoObjetivo == '3'} onChange={(event) => handleChangeNovoObjetivo(event)}/>
                                         <label htmlFor="mdObjetivo-personalizado">Personalizado</label>
                                     </div> 
                                 </div>
@@ -151,6 +215,7 @@ export default function CadastroObjetivo() {
                     </div>
                 </div>
             </div>
+            <ToastContainer pauseOnHover={false}/>
         </>
     )
 }

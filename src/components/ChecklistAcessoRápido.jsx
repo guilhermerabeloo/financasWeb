@@ -87,7 +87,7 @@ export default function ChecklistAcessoRapido() {
                 <div className="checklist-titulo">
                     <h4>Checklist</h4>
                 </div>
-                <div className="checklist-content">
+                <div className="checklistAr-content">
                     {itensChecklist.map((item) => {
                         return (
                             <div key={item.id} className="item-checklist">

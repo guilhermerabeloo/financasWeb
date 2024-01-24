@@ -5,27 +5,28 @@
     border-color: var(--azul-claro);
 }
 
-.container-acessoRapido .movimentacoes-content {
+.container-acessoRapido .movimentacoesAr-content {
     display: flex;
     overflow-y: auto;
     flex-direction: column;
     justify-content: start;
     max-height: 40vh;
     width: 100%;
+    height: 100%;
     padding: 5px;
     box-sizing: border-box;
 }
 
-.container-acessoRapido .movimentacoes-content::-webkit-scrollbar {
+.container-acessoRapido .movimentacoesAr-content::-webkit-scrollbar {
     width: 5px;
 }
 
-.container-acessoRapido .movimentacoes-content::-webkit-scrollbar-thumb {
+.container-acessoRapido .movimentacoesAr-content::-webkit-scrollbar-thumb {
     background-color: #aaa;
     border-radius: 10px;
 }
 
-.container-acessoRapido .movimentacoes-content {
+.container-acessoRapido .movimentacoesAr-content {
     width: 100%;
 }
 

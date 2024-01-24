@@ -18,7 +18,7 @@ function App() {
   };
 
   if(!cookie) {
-    navigate('/');
+    navigate('/home');
     return (
       <Entrar />
     )

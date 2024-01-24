@@ -130,7 +130,7 @@ div.mdObjetivo-areaRadio {
 
 .mdObjetivo-areaCaminhoObjetivo {
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
     align-items: center;
     height: 50%;
     width: 100%;
