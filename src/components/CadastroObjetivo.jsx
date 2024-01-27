@@ -1,7 +1,7 @@
 import './css/CadastroObjetivo.css'
 import trofeu from '../assets/trofeu.png';
 import Cookies from 'js-cookie';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { api } from '../lib/api';
 import { ToastContainer, toast } from 'react-toastify';
@@ -18,6 +18,7 @@ export default function CadastroObjetivo() {
         valorFinal: 0
     })
 
+    const navigate = useNavigate();
     const location = useLocation();
     const objetivoTemporario = location.state?.objetivoTemp;
     useEffect(() => {
@@ -76,6 +77,7 @@ export default function CadastroObjetivo() {
             const mesAtual = (competencia.toLocaleString('pt-BR', { month: 'long' }))
             mesesObjetivo.push({
                 competencia: `${mesAtual.toUpperCase().substring(0,3)} ${competencia.getFullYear()}`,
+                data: competencia,
                 meta: metaMensal.toFixed(2),
                 acumulado: acumulado.toFixed(2)
             })
@@ -126,8 +128,46 @@ export default function CadastroObjetivo() {
         }
     }
 
-    const cadastraNovoObjetivo = (event) => {
-        console.log(event)
+    const cancelaCriacaoObjetivo = async () => {
+        const emailCk = decodeURIComponent(Cookies.get('userEmail'));
+        try {
+            await api.delete(`/cancelaObjetivoTemp/${emailCk}`)
+
+            navigate('/objetivo/my')
+        } catch(err) {
+            toast.error('Ocorreu um erro. Por favor, tente novamente mais tarde!', {
+                autoClose: 2000,
+            });
+        }
+    }
+
+    const cadastraNovoObjetivo = async () => {
+        const emailCk = decodeURIComponent(Cookies.get('userEmail'));
+        const metas = etapasObjetivo.map((etapa) => {
+            const data = etapa.data;
+            const diaFormatado = data.getMonth()+1 < 10 ? `0${data.getMonth()+1}` : data.getMonth()+1;
+            const mesFormatado = data.getDate() < 10 ? `0${data.getDate()}` : data.getDate();
+            const dataFormatada = `${data.getFullYear()}-${mesFormatado}-${diaFormatado }`;
+
+            return {competencia: etapa.competencia, data: dataFormatada, valor: etapa.meta}
+        })
+        try {
+            await api.post(`/criaMetasObjetivo`,
+            {
+                "email": emailCk,
+                "objetivo": formNovoObjetivo.id,
+                "metas": metas
+            })
+
+            navigate('/objetivo/my')
+            toast.success('Objetivo cadastrado com sucesso!', {
+                autoClose: 2000,
+            });
+        } catch(err) {
+            toast.error('Ocorreu um erro. Por favor, tente novamente mais tarde!', {
+                autoClose: 2000,
+            });
+        }
     }
 
     return (
@@ -210,8 +250,8 @@ export default function CadastroObjetivo() {
                         </div>
                     </div>
                     <div className="mdObjetivo-actions">
-                        <button id="mdObjetivo-btnCancelar">Cancelar</button>
-                        <button id="mdObjetivo-btnAdicionar" onClick={(event) => cadastraNovoObjetivo(event)}>Adicionar</button>
+                        <button id="mdObjetivo-btnCancelar" onClick={cancelaCriacaoObjetivo}>Cancelar</button>
+                        <button id="mdObjetivo-btnAdicionar" onClick={cadastraNovoObjetivo}>Adicionar</button>
                     </div>
                 </div>
             </div>
