@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
 import Cookies from 'js-cookie';
-import { api } from '../lib/api';
 import ObjetivoEmpty from "./ObjetivoEmpty";
+import ObjetivoMy from "./ObjetivoMy";
+import { useEffect, useState } from "react";
+import { api } from '../lib/api';
 import { ToastContainer } from "react-toastify";
 
 export default function Objetivo() {
@@ -35,6 +36,7 @@ export default function Objetivo() {
         return (
             <>
                 <div className="container-objetivo">
+                    <ObjetivoMy />
                 </div>
                 <ToastContainer pauseOnHover={false}/>
             </>

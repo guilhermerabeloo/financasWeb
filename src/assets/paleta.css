@@ -1,5 +1,5 @@
 :root {
-    --preto: #000000;
+    --preto: hwb(0 0% 100%);
     --azul: #14213D;
     --azul-escuro1: #34508C;
     --azul-escuro2: #355AA8;
