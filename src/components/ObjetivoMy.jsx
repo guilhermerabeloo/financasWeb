@@ -3,7 +3,8 @@ import Chart from 'react-apexcharts';
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react'
 import { api } from '../lib/api'
-import { BsExclamationCircleFill, BsPatchCheckFill, BsDash } from "react-icons/bs";
+import { BsExclamationCircleFill, BsPatchCheckFill, BsClock } from "react-icons/bs";
+import ModalRealizaMeta from './ModalRealizaMeta';
 
 export default function ObjetivoMy() {
     const [ infoObjetivo, setInfoObjetivo ] = useState({
@@ -15,6 +16,7 @@ export default function ObjetivoMy() {
     });
     const [ etapasObjetivo, setEtapasObjetivo ] = useState([]);
     const [ totaisObjetivo, setTotaisObjetivos ] = useState({ planejado: 20000, realizado: 2390.60, atingido: 12 });
+    const [ modalActive, setModalActive ] = useState(true);
 
     const email = decodeURIComponent(Cookies.get('userEmail'));
     useEffect(() => {
@@ -131,6 +133,10 @@ export default function ObjetivoMy() {
     return (
         <>
             <div className="container-objetivoMy">
+                <ModalRealizaMeta 
+                    modalOn={modalActive}
+                    closeMovimento={() => setModalActive(!modalActive)}
+                />
                 <div className="area-tituloObjetivoMy">
                     <h3 className="titulo-objetivoMy">Objetivo</h3>
                 </div>
@@ -172,7 +178,7 @@ export default function ObjetivoMy() {
                                                     <p className="objetivoMy-realizado">{etapa.realizado}</p>
                                                     <p className={`objetivoMy-performance ${etapa.atingido == '1' ? 'atingido' : etapa.atingido == '0' ? 'naoAtingido' : ''}`}>{Number(etapa.percatingido).toFixed(2)}%</p>
                                                     <div className="objetivoMy-iconAtingido">
-                                                        {etapa.atingido == '0' ? <BsExclamationCircleFill className='naoAtingido'/> : etapa.atingido == '1' ? <BsPatchCheckFill className='atingido'/> : <BsDash />}
+                                                        {etapa.atingido == '0' ? <BsExclamationCircleFill className='naoAtingido'/> : etapa.atingido == '1' ? <BsPatchCheckFill className='atingido'/> : <BsClock />}
                                                     </div>
                                                 </div>
                                             )
