@@ -3,7 +3,7 @@ import Chart from 'react-apexcharts';
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react'
 import { api } from '../lib/api'
-import { BsExclamationCircleFill, BsPatchCheckFill } from "react-icons/bs";
+import { BsExclamationCircleFill, BsPatchCheckFill, BsDash } from "react-icons/bs";
 
 export default function ObjetivoMy() {
     const [ infoObjetivo, setInfoObjetivo ] = useState({
@@ -14,6 +14,7 @@ export default function ObjetivoMy() {
         valorfinal:''
     });
     const [ etapasObjetivo, setEtapasObjetivo ] = useState([]);
+    const [ totaisObjetivo, setTotaisObjetivos ] = useState({ planejado: 20000, realizado: 2390.60, atingido: 12 });
 
     const email = decodeURIComponent(Cookies.get('userEmail'));
     useEffect(() => {
@@ -21,10 +22,22 @@ export default function ObjetivoMy() {
             try {
                 const response = await api.get(`/buscaObjetivoCompleto/${email}`)
                 const data = response.data.data;
+                const etapas = data.metasObjetivo;
+                let realizado = 0;
+                etapas.map((e) => {
+                  realizado += Number(e.realizado)
+                })
+                const planejado = Number(data.cabecalho[0].valorfinal)
+                const atingido = realizado / planejado * 100;
+                setTotaisObjetivos({
+                  planejado: planejado,
+                  realizado: realizado,
+                  atingido: atingido
+                })
+
                 setEtapasObjetivo(data.metasObjetivo)
                 setInfoObjetivo(data.cabecalho[0])
-                console.log(data.cabecalho[0])
-            } catch(err) {
+            } catch(err) {  
                 console.log(err)
             }
         }
@@ -33,7 +46,7 @@ export default function ObjetivoMy() {
     }, [email])
 
     const chartData = {
-        series: [23],
+        series: [totaisObjetivo.atingido],
         options: {
           chart: {
             height: 350,
@@ -148,7 +161,7 @@ export default function ObjetivoMy() {
                                         </div>
                                         {etapasObjetivo.map((etapa, i) => {
                                             return (
-                                                <div className="objetivoMy-etapaCaminho" key={i}>
+                                                <div className="objetivoMy-etapaCaminho" id={etapa.id} key={i}>
                                                     <p className="objetivoMy-competencia">{etapa.competencia}</p>
                                                     <div className="objetivoMy-elementsCaminho">
                                                         <div className="objetivoMy-left"></div>
@@ -156,10 +169,10 @@ export default function ObjetivoMy() {
                                                         <div className="objetivoMy-right"></div>
                                                     </div>
                                                     <p className="objetivoMy-meta">{etapa.meta}</p>
-                                                    <p className="objetivoMy-realizado">{etapa.acumulado}</p>
-                                                    <p className="objetivoMy-performance">23,3%</p>
+                                                    <p className="objetivoMy-realizado">{etapa.realizado}</p>
+                                                    <p className={`objetivoMy-performance ${etapa.atingido == '1' ? 'atingido' : etapa.atingido == '0' ? 'naoAtingido' : ''}`}>{Number(etapa.percatingido).toFixed(2)}%</p>
                                                     <div className="objetivoMy-iconAtingido">
-                                                        {etapa.atingido == '0' ? <BsExclamationCircleFill className='naoAtingido'/> : <BsPatchCheckFill className='atingido'/>}
+                                                        {etapa.atingido == '0' ? <BsExclamationCircleFill className='naoAtingido'/> : etapa.atingido == '1' ? <BsPatchCheckFill className='atingido'/> : <BsDash />}
                                                     </div>
                                                 </div>
                                             )
@@ -177,11 +190,11 @@ export default function ObjetivoMy() {
                             <div className="objetivoMy-areaLabelGrafico">
                                 <div className="objetivoMy-objetivoTotal">
                                     <span className="objetivoMy-labelObjetivoTotal">Objetivo:</span>
-                                    <span className="objetivoMy-valorObjetivoTotal">{infoObjetivo.valorfinal}</span>
+                                    <span className="objetivoMy-valorObjetivoTotal">{totaisObjetivo.planejado}</span>
                                 </div>
                                 <div className="objetivoMy-objetivoAtingido">
                                     <span className="objetivoMy-labelObjetivoAtingido">Atingido:</span>
-                                    <span className="objetivoMy-valorObjetivoAtingido">{infoObjetivo.valorfinal}</span>
+                                    <span className="objetivoMy-valorObjetivoAtingido">{totaisObjetivo.realizado}</span>
                                 </div>
                             </div>
                         </div>
