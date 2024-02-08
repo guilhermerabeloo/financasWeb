@@ -14,9 +14,17 @@ export default function ObjetivoMy() {
         valorinicial: '',
         valorfinal:''
     });
+    const [ metaSelecionada, setMetaSelecionada ] = useState({
+      id: 0,
+      competencia: '',
+      meta: 0,
+      realizado: 0,
+      atingido: 0
+    });
     const [ etapasObjetivo, setEtapasObjetivo ] = useState([]);
     const [ totaisObjetivo, setTotaisObjetivos ] = useState({ planejado: 20000, realizado: 2390.60, atingido: 12 });
-    const [ modalActive, setModalActive ] = useState(true);
+    const [ modalActive, setModalActive ] = useState(false);
+    
 
     const email = decodeURIComponent(Cookies.get('userEmail'));
     useEffect(() => {
@@ -45,7 +53,20 @@ export default function ObjetivoMy() {
         }
 
         getObjetivo()
-    }, [email])
+    }, [email, modalActive]);
+
+    const selecionaMeta = (event, competencia, meta, realizado, atingido) => {
+      const id = event.currentTarget.id;
+      setMetaSelecionada({
+        id: id,
+        competencia: competencia,
+        meta: meta,
+        realizado: realizado,
+        atingido: atingido
+      });
+
+      setModalActive(true);
+    }
 
     const chartData = {
         series: [totaisObjetivo.atingido],
@@ -135,7 +156,8 @@ export default function ObjetivoMy() {
             <div className="container-objetivoMy">
                 <ModalRealizaMeta 
                     modalOn={modalActive}
-                    closeMovimento={() => setModalActive(!modalActive)}
+                    closeModalMeta={() => setModalActive(!modalActive)}
+                    dados={metaSelecionada}
                 />
                 <div className="area-tituloObjetivoMy">
                     <h3 className="titulo-objetivoMy">Objetivo</h3>
@@ -167,7 +189,12 @@ export default function ObjetivoMy() {
                                         </div>
                                         {etapasObjetivo.map((etapa, i) => {
                                             return (
-                                                <div className="objetivoMy-etapaCaminho" id={etapa.id} key={i}>
+                                                <div 
+                                                  className="objetivoMy-etapaCaminho" 
+                                                  id={etapa.id} 
+                                                  key={i}
+                                                  onClick={(event) => selecionaMeta(event, etapa.competencia, etapa.meta, etapa.realizado, etapa.atingido)}
+                                                >
                                                     <p className="objetivoMy-competencia">{etapa.competencia}</p>
                                                     <div className="objetivoMy-elementsCaminho">
                                                         <div className="objetivoMy-left"></div>

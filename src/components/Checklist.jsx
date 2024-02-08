@@ -34,8 +34,8 @@ export default function Checklist() {
                 const valorPendente = valortotal - valorgasto;
 
                 const totaisAntigos = { ...totais };
-                totaisAntigos['gasto'] = valorgasto;
-                totaisAntigos['pendente'] = valorPendente;
+                totaisAntigos['gasto'] = Number(valorgasto).toFixed(2);
+                totaisAntigos['pendente'] = Number(valorPendente).toFixed(2);
 
                 setTotais(totaisAntigos)
             } catch(error) {
