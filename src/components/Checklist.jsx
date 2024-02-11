@@ -1,9 +1,10 @@
+import './css/Checklist.css'
+import Cookies from 'js-cookie';
 import { BsBackspace, BsClipboard2Check, BsClockHistory, BsBookmarkCheckFill   } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { api } from '../lib/api';
 import { ToastContainer, toast } from 'react-toastify';
-import Cookies from 'js-cookie';
-import './css/Checklist.css'
+import { formatarMoeda } from '../assets/util';
 
 export default function Checklist() {
     const [ itensChecklist, setItensChecklist ] = useState([]);
@@ -205,7 +206,7 @@ export default function Checklist() {
                                                 <tr key={item.id}>
                                                     <td><input type="checkbox" id={item.id} checked={item.checked} onChange={(event) => {marcaItemChecklist(event)}}/></td>
                                                     <td>{item.item}</td>
-                                                    <td style={{textAlign: "center"}}>R$ {item.valor}</td>
+                                                    <td style={{textAlign: "center"}}>{formatarMoeda(item.valor)}</td>
                                                     <td style={{textAlign: "center"}}>{item.dia_mes}</td>
                                                     <td style={{textAlign: "center"}}><span className="icon-excluiItemChecklist"><BsBackspace /></span></td>
                                                 </tr>
@@ -228,7 +229,7 @@ export default function Checklist() {
                                     <BsClipboard2Check />
                                 </div>
                                 <div className="area-valoresTotalizadoresChecklist">
-                                    { totais.gasto }
+                                    { formatarMoeda(totais.gasto) }
                                 </div>
                             </div>
                             <div className="area-valorPendenteChecklist">
@@ -236,7 +237,7 @@ export default function Checklist() {
                                     <BsClockHistory />
                                 </div>
                                 <div className="area-valoresTotalizadoresChecklist">
-                                    { totais.pendente }   
+                                    { formatarMoeda(totais.pendente) }   
                                 </div>
                             </div>
                         </div>

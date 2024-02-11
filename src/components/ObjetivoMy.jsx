@@ -1,10 +1,11 @@
 import './css/ObjetivoMy.css'
 import Chart from 'react-apexcharts';
 import Cookies from 'js-cookie';
+import ModalRealizaMeta from './ModalRealizaMeta';
 import { useEffect, useState } from 'react'
 import { api } from '../lib/api'
 import { BsExclamationCircleFill, BsPatchCheckFill, BsClock } from "react-icons/bs";
-import ModalRealizaMeta from './ModalRealizaMeta';
+import { formatarMoeda } from '../assets/util';
 
 export default function ObjetivoMy() {
     const [ infoObjetivo, setInfoObjetivo ] = useState({
@@ -223,11 +224,11 @@ export default function ObjetivoMy() {
                             <div className="objetivoMy-areaLabelGrafico">
                                 <div className="objetivoMy-objetivoTotal">
                                     <span className="objetivoMy-labelObjetivoTotal">Objetivo:</span>
-                                    <span className="objetivoMy-valorObjetivoTotal">{totaisObjetivo.planejado}</span>
+                                    <span className="objetivoMy-valorObjetivoTotal">{formatarMoeda(totaisObjetivo.planejado)}</span>
                                 </div>
                                 <div className="objetivoMy-objetivoAtingido">
                                     <span className="objetivoMy-labelObjetivoAtingido">Atingido:</span>
-                                    <span className="objetivoMy-valorObjetivoAtingido">{totaisObjetivo.realizado}</span>
+                                    <span className="objetivoMy-valorObjetivoAtingido">{formatarMoeda(totaisObjetivo.realizado)}</span>
                                 </div>
                             </div>
                         </div>

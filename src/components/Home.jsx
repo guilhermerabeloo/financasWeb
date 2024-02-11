@@ -1,9 +1,55 @@
+import './css/Home.css'
+import Cookies from 'js-cookie';
 import ChecklistAcessoRapido from './ChecklistAcessoRápido'
 import MovimentacoesAcessoRapido from './MovimentacoesAcessoRapido'
 import ObjetivoAcessoRapido from './ObjetivoAcessoRapido'
-import './css/Home.css'
+import { api } from '../lib/api'
+import { useEffect, useState } from 'react'
+import { formatarMoeda } from '../assets/util';
 
 export default function Home() {
+    const [ totaisCabecalho, setTotaisCabecalho ] = useState({
+        receitas: 0,
+        despesas: 0,
+        saldo: 0,
+    });
+    const [ metaAtual, setMetaAtual ] = useState(0)
+    const [ statusSaldo, setStatusSaldo ] = useState('');
+    const [ statusMeta, setStatusMeta ] = useState('')
+
+    const email = decodeURIComponent(Cookies.get('userEmail'));
+    useEffect(() => {
+        async function buscaTotais() {
+            const response = await api.get(`/totaisMovimentosAtuais/${email}`)
+            const data = response.data.data[0];
+            const { receitas, despesa } = data;
+            const saldo = Number(receitas) - Number(despesa);
+
+            setTotaisCabecalho({
+                receitas: receitas,
+                despesas: despesa,
+                saldo: saldo,
+                distanciaMeta: 0
+            });
+
+            saldo > 0 ? setStatusSaldo('positivo') : setStatusSaldo('negativo');
+        }
+
+        async function buscaMeta() {
+            const responseMeta = await api.get(`/buscaMetaAtual/${email}`);
+            const dataMeta = responseMeta.data.data[0];
+            const meta = Number(dataMeta.meta);
+            setMetaAtual(meta);
+        }
+        buscaTotais();
+        buscaMeta();
+    }, [email]);
+
+    useEffect(() => {
+        totaisCabecalho.saldo > metaAtual ? setStatusMeta('positivo') : setStatusMeta('negativo')
+        console.log('09')
+    }, [metaAtual, totaisCabecalho])
+
     return (
         <>
             <div className="content container-home">
@@ -12,21 +58,21 @@ export default function Home() {
                         <div className="area-receitaDespesa">
                             <div className="receita">
                                 <h5>Receitas no mês</h5>
-                                <p>R$ 5.000,00</p>
+                                <p>{formatarMoeda(totaisCabecalho.receitas)}</p>
                             </div>
                             <div className="despesa">
                                 <h5>Despesas no mês</h5>
-                                <p>R$ 3.409,00</p>
+                                <p>{formatarMoeda(totaisCabecalho.despesas)}</p>
                             </div>
                         </div>
                         <div className="area-saldoMeta">
                             <div className="saldo">
                                 <h5>Saldo do mês</h5>
-                                <p>R$ 409,00</p>
+                                <p className={statusSaldo}>{formatarMoeda(totaisCabecalho.saldo)}</p>
                             </div>
                             <div className="meta">
-                                <h5>Distância até a meta</h5>
-                                <p>13,00%</p>
+                                <h5>Meta do mês</h5>
+                                <p className={statusMeta}>{formatarMoeda(metaAtual)}</p>
                             </div>
                         </div>
                     </div>

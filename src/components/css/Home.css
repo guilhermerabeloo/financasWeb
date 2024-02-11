@@ -38,9 +38,19 @@
     margin-bottom: 1.6vh;
 }
 
-.area-saldoMeta .saldo p {
-    font-size: 5vh;
+.area-saldoMeta .saldo p,
+.area-saldoMeta .meta p,
+.area-receitaDespesa .receita p,
+.area-receitaDespesa .despesa p {
+    font-size: 4vh;
+}
+
+.area-saldoMeta .saldo p.positivo {
     color: green;
+}
+
+.area-saldoMeta .saldo p.negativo {
+    color: red;
 }
 
 .area-saldoMeta .meta {
@@ -52,9 +62,12 @@
     margin-bottom: 1.6vh;
 }
 
-.area-saldoMeta .meta p {
-    font-size: 5vh;
-    color: rgb(255, 153, 0);
+.area-saldoMeta .meta p.positivo {
+    color: green;
+}
+
+.area-saldoMeta .meta p.negativo {
+    color: red;
 }
 
 .area-receitaDespesa .receita {
@@ -66,10 +79,6 @@
     margin-bottom: 1.6vh;
 }
 
-.area-receitaDespesa .receita p {
-    font-size: 5vh;
-}
-
 .area-receitaDespesa .despesa {
     width: 50%;
 }
@@ -77,11 +86,6 @@
 .area-receitaDespesa .despesa h5 {
     font-size: 1em;
     margin-bottom: 1.6vh;
-}
-
-.area-receitaDespesa .despesa p {
-    font-size: 5vh;
-    color: red
 }
 
 .cabecalho-AcessoRapido {

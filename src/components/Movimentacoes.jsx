@@ -124,7 +124,7 @@ export default function Movimentacoes() {
                            <div className="area-botoesFiltrosData">
                                 <input id="inp-filtroDataInicio" type="Date" />
                                 <p> a </p>
-                                <input type="Date" />
+                                <input id="inp-filtroDataFinal" type="Date" />
                            </div>
                         </div>
                         <div className="movimentos">

@@ -17,7 +17,7 @@
 
 .container.menu-expandido {
     display: grid;
-    grid-template-columns: 180px 86%;
+    grid-template-columns: 200px 87.6%;
     grid-template-rows: 85vh 5vh;
 }
 

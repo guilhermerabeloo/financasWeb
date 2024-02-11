@@ -145,8 +145,8 @@ export default function CadastroObjetivo() {
         const emailCk = decodeURIComponent(Cookies.get('userEmail'));
         const metas = etapasObjetivo.map((etapa) => {
             const data = etapa.data;
-            const diaFormatado = data.getMonth()+1 < 10 ? `0${data.getMonth()+1}` : data.getMonth()+1;
-            const mesFormatado = data.getDate() < 10 ? `0${data.getDate()}` : data.getDate();
+            const diaFormatado = data.getDate()+1 < 10 ? `0${data.getDate()+1}` : data.getDate()+1;
+            const mesFormatado = data.getMonth() < 10 ? `0${data.getMonth()}` : data.getMonth();
             const dataFormatada = `${data.getFullYear()}-${mesFormatado}-${diaFormatado }`;
 
             return {competencia: etapa.competencia, data: dataFormatada, valor: etapa.meta}

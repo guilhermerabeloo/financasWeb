@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { api } from '../lib/api';
 import { BsArrowRight } from 'react-icons/bs';
 import { useEffect, useState } from 'react'
+import { formatarMoeda } from '../assets/util';
 
 export default function ObjetivoAcessoRapido() {
     const [ totaisObjetivo, setTotaisObjetivos ] = useState({ planejado: 0, realizado: 0, atingido: 0 });
@@ -91,7 +92,7 @@ export default function ObjetivoAcessoRapido() {
                             return parseInt(val) + '%';
                         },
                         color: '#111',
-                        fontSize: '36px',
+                        fontSize: '28px',
                         show: true,
                     }
                     }
@@ -135,11 +136,11 @@ export default function ObjetivoAcessoRapido() {
                         <div className="objetivoAr-areaLabelGrafico">
                             <div className="objetivoAr-objetivoTotal">
                                 <span className="objetivoAr-labelObjetivoTotal">Objetivo:</span>
-                                <span className="objetivoAr-valorObjetivoTotal">{totaisObjetivo.planejado}</span>
+                                <span className="objetivoAr-valorObjetivoTotal">{formatarMoeda(totaisObjetivo.planejado)}</span>
                             </div>
                             <div className="objetivoAr-objetivoAtingido">
                                 <span className="objetivoAr-labelObjetivoAtingido">Atingido:</span>
-                                <span className="objetivoAr-valorObjetivoAtingido">{totaisObjetivo.realizado}</span>
+                                <span className="objetivoAr-valorObjetivoAtingido">{formatarMoeda(totaisObjetivo.realizado)}</span>
                             </div>
                         </div>
                     </div>

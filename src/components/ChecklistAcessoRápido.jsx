@@ -5,6 +5,7 @@ import { api } from '../lib/api';
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { BsArrowRight } from 'react-icons/bs';
+import { formatarMoeda } from '../assets/util';
 
 export default function ChecklistAcessoRapido() {
     const [ itensChecklist, setItensChecklist ] = useState([]);
@@ -83,7 +84,7 @@ export default function ChecklistAcessoRapido() {
 
     return (
         <>
-            <div className="checklist container-acessoRapido">
+            <div className="checklistAr container-acessoRapido">
                 <div className="checklist-titulo">
                     <h4>Checklist</h4>
                 </div>
@@ -97,7 +98,7 @@ export default function ChecklistAcessoRapido() {
                                         <span>{item.dia_mes} - </span>{item.item}
                                     </label>
                                 </div>
-                                <p>R$ {item.valor}</p>
+                                <p>{formatarMoeda(item.valor)}</p>
                             </div>
                         )
                     })}
