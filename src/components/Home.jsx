@@ -40,7 +40,6 @@ export default function Home() {
                             <ChecklistAcessoRapido />
                             <MovimentacoesAcessoRapido />
                             <ObjetivoAcessoRapido />
-                            <ChecklistAcessoRapido />
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,74 @@
+.objetivoAr-titulo {
+    width: 100%;
+    height: 10%;
+    border-bottom: solid .3px;
+    border-color: var(--azul-claro);
+}
+
+.container-acessoRapido .objetivoAr-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-height: 40vh;
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.container-acessoRapido .objetivoAr-areaGrafico {
+    height: 80%;
+    width: 95%;
+}
+
+.container-acessoRapido .objetivoAr-areaLabelGrafico {
+    height: 20%;
+    width: 95%;
+}
+.objetivoAr-labelObjetivoTotal,
+.objetivoAr-labelObjetivoAtingido {
+    color: var(--cinza-escuro);
+    margin-right: 20px;
+}
+
+.objetivoAr-areaLabelGrafico {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.objetivoAr-areaLabelGrafico div span{
+    font-size: 12px;
+}
+
+.objetivoAr-objetivoTotal,
+.objetivoAr-objetivoAtingido {
+    display: flex;
+    justify-content: center;
+}
+
+.objetivoAr-seguirLink {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: end;
+    padding-right: 3%;
+    box-sizing: border-box;
+    width: 100%;
+    height: 6vh;
+    color: var(--azul-claro);
+    font-size: 25px;
+}
+
+.link-objetivoAr {
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+}
+
+.link-objetivoAr:visited {
+    text-decoration: none;
+    outline: none;
+    color: inherit;
+}
