@@ -81,11 +81,6 @@
     margin-bottom: 3%;
 }
 
-/* .mdMovimento-areaInputRadio {
-    margin-left: 2%;
-    justify-content: start;
-} */
-
 .mdMovimento-areaInput label,
 .mdMovimento-areaInputRadio label {
     font-size: 12px;
@@ -161,6 +156,12 @@ div.mdMovimento-areaRadio {
 
 .mdMovimento-areaTag {
     display: flex;
+    flex-direction: column;
+}
+
+.mdMovimento-btnAdicionaTag {
+    display: flex;
+    align-items: center;
     flex-direction: row;
     padding: 0 10px 0 10px;
     box-sizing: border-box;

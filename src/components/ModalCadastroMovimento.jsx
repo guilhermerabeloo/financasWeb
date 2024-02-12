@@ -1,9 +1,10 @@
-import PropTypes from 'prop-types';
 import './css/ModalCadastroMovimento.css'
+import PropTypes from 'prop-types';
+import Cookies from 'js-cookie';
+import ModalTags from './ModalTags';
 import { BsTag, BsX } from 'react-icons/bs';
 import { useState, useEffect } from 'react';
 import { api } from '../lib/api';
-import Cookies from 'js-cookie';
 import { toast } from 'react-toastify';
 
 ModalMovimento.propTypes = {
@@ -12,13 +13,22 @@ ModalMovimento.propTypes = {
 }
 
 export function ModalMovimento({ modalOn, closeMovimento }) {
+    const [ selecaoTagAtiva, setSelecaoTagAtiva ] = useState(false)
     const [ mostraItensChecklist, setMostraItensChecklist ] = useState(false);
+    const [ tagSelecionada, setTagSelecionada ] = useState(false);
     const [ mostraTag, setMostraTag ] = useState(false);
     const [ itensChecklist, setItensChecklist ] = useState([]);
     const [ tiposMovimento, setTiposMovimentos ] = useState([]);
+    const [ infoTagSelecionada, setInfoTagSelecionada ] = useState({
+        id: 0,
+        tag: '',
+        corfundo: '',
+        corletra: ''
+    });
     const [ novoMovimento, setNovoMovimento ] = useState({
         descricao: '',
         tipo: '0',
+        tag: 0,
         data: '',
         valor: '',
         repetir: 1,
@@ -113,6 +123,7 @@ export function ModalMovimento({ modalOn, closeMovimento }) {
                 data: parcelaFormat,
                 valor: novoMovimento.valor,
                 tipomovimento_id: novoMovimento.tipo,
+                tag: novoMovimento.tipo == 1 ? novoMovimento.tag : 0,
                 checklistmensal_id: novoMovimento.itemChecklist == 'Selecione' ? null : novoMovimento.itemChecklist
             })
         }
@@ -129,9 +140,11 @@ export function ModalMovimento({ modalOn, closeMovimento }) {
             closeMovimento(false);
             setMostraTag(false);
             setMostraItensChecklist(false);
+            setTagSelecionada(false);
             setNovoMovimento({
                 descricao: '',
                 tipo: '0',
+                tag: 0,
                 data: '',
                 valor: '',
                 repetir: 1,
@@ -213,8 +226,27 @@ export function ModalMovimento({ modalOn, closeMovimento }) {
                         </div>
                         <div className={`mdMovimento-tag ${!mostraTag && 'hide'}`}>
                             <div className="mdMovimento-areaTag">
-                                <BsTag className='icon-tag'/>
-                                <div id='tag'>Adicione uma tag</div>
+                                <div className="mdMovimento-btnAdicionaTag" onClick={() => setSelecaoTagAtiva(!selecaoTagAtiva)}>
+                                    <BsTag className='icon-tag'/>
+                                    <div id='tag'>
+                                        {!tagSelecionada ? 'Adicione uma tag' : 
+                                            <div className="mdTags-tag">
+                                                <div className="mdTags-tag-item">
+                                                    <span style={{backgroundColor: infoTagSelecionada.corfundo, color: infoTagSelecionada.corletra}}>{infoTagSelecionada.tag}</span>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                                <ModalTags 
+                                    selecaoTagOn={selecaoTagAtiva}
+                                    tagSelecionada={tagSelecionada}
+                                    infoMovimento={novoMovimento}
+                                    informaTagMovimento={setNovoMovimento}
+                                    informaTagSelecionada={setInfoTagSelecionada}
+                                    closeSelecao={() => setSelecaoTagAtiva(!selecaoTagAtiva)}
+                                    selecionaTag={() => setTagSelecionada(!tagSelecionada)}
+                                />
                             </div>
                         </div>
                     </div>
