@@ -89,19 +89,24 @@ export default function ChecklistAcessoRapido() {
                     <h4>Checklist</h4>
                 </div>
                 <div className="checklistAr-content">
-                    {itensChecklist.map((item) => {
-                        return (
-                            <div key={item.id} className="item-checklist">
-                                <div className="item">
-                                    <input type="checkbox" id={item.id} checked={item.checked} onChange={(event) => {marcaItemChecklist(event)}}/>
-                                    <label>
-                                        <span>{item.dia_mes} - </span>{item.item}
-                                    </label>
+                    {itensChecklist.length ?
+                        itensChecklist.map((item) => {
+                            return (
+                                <div key={item.id} className="item-checklist">
+                                    <div className="item">
+                                        <input type="checkbox" id={item.id} checked={item.checked} onChange={(event) => {marcaItemChecklist(event)}}/>
+                                        <label>
+                                            <span>{item.dia_mes} - </span>{item.item}
+                                        </label>
+                                    </div>
+                                    <p>{formatarMoeda(item.valor)}</p>
                                 </div>
-                                <p>{formatarMoeda(item.valor)}</p>
-                            </div>
-                        )
-                    })}
+                            )
+                    }) :
+                    <div className="checklistAr-contentEmpity">
+                        <span>Você ainda não possui checklist cadastrado</span>
+                    </div>
+                }
                 </div>
                 <div className="checklist-seguirLink">
                     <Link to="/checklist" className='link-checklist'>

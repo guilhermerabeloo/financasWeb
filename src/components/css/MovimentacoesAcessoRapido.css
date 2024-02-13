@@ -17,6 +17,18 @@
     box-sizing: border-box;
 }
 
+.container-acessoRapido .movimentacoesAr-contentEmpity {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.container-acessoRapido .movimentacoesAr-contentEmpity span {
+    text-wrap: wrap;
+    text-align: center;
+}
+
+
 .container-acessoRapido .movimentacoesAr-content::-webkit-scrollbar {
     width: 5px;
 }

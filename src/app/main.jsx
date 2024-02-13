@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom'
 import { AuthProvider } from '../lib/AuthContext.jsx'
 
 import Entrar from '../components/Entrar.jsx'
@@ -17,6 +17,10 @@ const router = createBrowserRouter([
     path: '/',
     element: <App />,
     children: [
+      {
+        path: '/',
+        element: <Navigate to="/home" />
+      },
       {
         path: '/home',
         element: <Home />

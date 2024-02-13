@@ -11,9 +11,21 @@
     flex-direction: column;
     justify-content: start;
     max-height: 40vh;
+    height: 100%;
     width: 100%;
     padding: 5px;
     box-sizing: border-box;
+}
+
+.checklistAr-contentEmpity {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.checklistAr-contentEmpity span {
+    text-wrap: wrap;
+    text-align: center;
 }
 
 .checklistAr-content::-webkit-scrollbar {

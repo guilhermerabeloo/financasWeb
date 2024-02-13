@@ -32,15 +32,20 @@ export default function MovimentacoesAcessoRapido() {
                     <h4>Últimas movimentações</h4>
                 </div>
                 <div className="movimentacoesAr-content">
-                    {movimentos.map((movimento, i) => {
-                        return (
-                            <div key={i} className="item-movimento">
-                                <div className="area-etapasExtrato"><div className="checkpoint"></div><div className="route"></div></div>
-                                <div className="area-descricaoMovimento">{movimento.descricao}<span className="acessoRapido-dataMovimento">{movimento.data}</span></div>
-                                <div className={`area-valorMovimento ${movimento.tipo == 'Receita' ? 'receita' : 'despesa'}`}>{movimento.valor}{`${movimento.tipo == 'Receita' ? ' C' : ' D'}`}</div>
-                            </div>
-                        )
-                    })}
+                    {movimentos.length ?
+                        movimentos.map((movimento, i) => {
+                            return (
+                                <div key={i} className="item-movimento">
+                                    <div className="area-etapasExtrato"><div className="checkpoint"></div><div className="route"></div></div>
+                                    <div className="area-descricaoMovimento">{movimento.descricao}<span className="acessoRapido-dataMovimento">{movimento.data}</span></div>
+                                    <div className={`area-valorMovimento ${movimento.tipo == 'Receita' ? 'receita' : 'despesa'}`}>{movimento.valor}{`${movimento.tipo == 'Receita' ? ' C' : ' D'}`}</div>
+                                </div>
+                            )
+                        }) :
+                        <div className="movimentacoesAr-contentEmpity">
+                            <span>Você ainda não possui movimentações cadastradas</span>
+                        </div>
+                    }
                 </div>
                 <div className="movimentacoes-seguirLink">
                     <Link to="/movimentacoes" className='link-movimentacoes'>

@@ -125,25 +125,30 @@ export default function ObjetivoAcessoRapido() {
                     <h4>Objetivo atual</h4>
                 </div>
                 <div className="objetivoAr-content">
-                    <div className="area-conclusaoObjetivoAr">
-                        <div className="objetivoAr-areaGrafico">
-                            <Chart 
-                                options={chartData.options}
-                                series={chartData.series}
-                                type='radialBar'
-                            />
-                        </div>
-                        <div className="objetivoAr-areaLabelGrafico">
-                            <div className="objetivoAr-objetivoTotal">
-                                <span className="objetivoAr-labelObjetivoTotal">Objetivo:</span>
-                                <span className="objetivoAr-valorObjetivoTotal">{formatarMoeda(totaisObjetivo.planejado)}</span>
+                    {totaisObjetivo.planejado > 0 ?
+                        <div className="area-conclusaoObjetivoAr">
+                            <div className="objetivoAr-areaGrafico">
+                                <Chart 
+                                    options={chartData.options}
+                                    series={chartData.series}
+                                    type='radialBar'
+                                />
                             </div>
-                            <div className="objetivoAr-objetivoAtingido">
-                                <span className="objetivoAr-labelObjetivoAtingido">Atingido:</span>
-                                <span className="objetivoAr-valorObjetivoAtingido">{formatarMoeda(totaisObjetivo.realizado)}</span>
+                            <div className="objetivoAr-areaLabelGrafico">
+                                <div className="objetivoAr-objetivoTotal">
+                                    <span className="objetivoAr-labelObjetivoTotal">Objetivo:</span>
+                                    <span className="objetivoAr-valorObjetivoTotal">{formatarMoeda(totaisObjetivo.planejado)}</span>
+                                </div>
+                                <div className="objetivoAr-objetivoAtingido">
+                                    <span className="objetivoAr-labelObjetivoAtingido">Atingido:</span>
+                                    <span className="objetivoAr-valorObjetivoAtingido">{formatarMoeda(totaisObjetivo.realizado)}</span>
+                                </div>
                             </div>
+                        </div> :
+                        <div className="movimentacoesAr-contentEmpity">
+                            <span>Você ainda não possui um objetivo cadastrado</span>
                         </div>
-                    </div>
+                    }
                 </div>
                 <div className="objetivoAr-seguirLink">
                     <Link to="/objetivo/my" className='link-objetivoAr'>
