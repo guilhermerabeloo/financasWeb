@@ -147,7 +147,13 @@ export default function Movimentacoes() {
                                                     <td className="area-etapasExtrato"><div className="checkpoint"></div><div className="route"></div></td>
                                                     <td>{movimento.descricao}</td>
                                                     <td>{movimento.data}</td>
-                                                    <td>TAG</td>
+                                                    <td>
+                                                        <div className="mdTags-tag">
+                                                            <div className="mdTags-tag-item">
+                                                                <span style={{backgroundColor: movimento.corfundo, color: movimento.corletra}}>{movimento.tag}</span>
+                                                            </div>
+                                                        </div>
+                                                    </td>
                                                     <td className={`area-valor ${movimento.tipo == 'Receita' ? 'receita' : 'despesa'}`}>{movimento.valor}{`${movimento.tipo == 'Receita' ? ' C' : ' D'}`}</td>
                                                     <td className='area-action'>
                                                         <BsPencilSquare id='action-edit'/>

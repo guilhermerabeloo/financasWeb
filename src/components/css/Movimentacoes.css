@@ -187,6 +187,18 @@
     width: 30%;
 }
 
+.itens-checklist .mdTags-tag {
+    cursor: default;
+}
+
+.itens-checklist .mdTags-tag span {
+    border: none;
+}
+
+.itens-checklist .mdTags-tag:hover {
+    background-color: var(--branco);
+}
+
 .area-graficoReceitasDespesas {
     display: flex;
     flex-direction: column;

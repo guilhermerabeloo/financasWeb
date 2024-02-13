@@ -64,6 +64,18 @@
     color: var(--vermelho-escuro1);
 }
 
+.area-tabelaMovimento .mdTags-tag {
+    cursor: default;
+}
+
+.area-tabelaMovimento .mdTags-tag span {
+    border: none;
+}
+
+.area-tabelaMovimento .mdTags-tag:hover {
+    background-color: var(--branco);
+}
+
 .area-reiniciarChecklist {
     display: flex;
     align-items: center;
@@ -179,10 +191,38 @@
     width: 48%;
 }
 
-.area-addItemChecklist .area-nomeNovoItem {
+.area-addItemChecklist .area-nomeTag {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    margin-bottom: 2vh;
+}
+
+.area-nomeTag .area-nome {
     display: flex;
     flex-direction: column;
-    margin-bottom: 2vh;
+    width: 48%;
+}
+
+.area-nomeTag .mdMovimento-areaTag {
+    font-size: 14px;
+    width: 48%;
+}
+
+.area-nomeTag .icon-tag {
+    width: 10%;
+}
+
+.area-nomeTag .mdMovimento-btnAdicionaTag {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding: 0;
+}
+
+.area-nomeTag #tag {
+    border-bottom: var(--azul-escuro2) solid 2px;
+    cursor: pointer;
 }
 
 .scrollable-tbody input {
@@ -191,8 +231,6 @@
 
 .form-addItem input {
     height: 30px;
-    padding: 0 10px 0 10px;
-    box-sizing: border-box;
     background-color: var(--cinza-claro);
     border-radius: 7px;
     border: none;

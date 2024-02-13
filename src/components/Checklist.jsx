@@ -1,6 +1,7 @@
 import './css/Checklist.css'
 import Cookies from 'js-cookie';
-import { BsBackspace, BsClipboard2Check, BsClockHistory, BsBookmarkCheckFill   } from "react-icons/bs";
+import ModalTags from './ModalTags';
+import { BsBackspace, BsClipboard2Check, BsClockHistory, BsBookmarkCheckFill, BsTag } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { api } from '../lib/api';
 import { ToastContainer, toast } from 'react-toastify';
@@ -8,9 +9,17 @@ import { formatarMoeda } from '../assets/util';
 
 export default function Checklist() {
     const [ itensChecklist, setItensChecklist ] = useState([]);
-    const [ atualizaTabela, setAtualizaTabela ] = useState(false)
-    const [ novoItemChecklist, setNovoItemChecklist ] = useState({email: '', item: '', valor: '' , dia_mes: ''});
+    const [ selecaoTagAtiva, setSelecaoTagAtiva ] = useState(false);
+    const [ tagSelecionada, setTagSelecionada ] = useState(false);
+    const [ atualizaTabela, setAtualizaTabela ] = useState(false);
+    const [ novoItemChecklist, setNovoItemChecklist ] = useState({email: '', item: '', tag: '', valor: '' , dia_mes: ''});
     const [ totais, setTotais ] = useState({gasto: '0,00', pendente: '0,00'})
+    const [ infoTagSelecionada, setInfoTagSelecionada ] = useState({
+        id: 0,
+        tag: '',
+        corfundo: '',
+        corletra: ''
+    });
 
     const email = decodeURIComponent(Cookies.get('userEmail'));
     useEffect(() => {
@@ -76,7 +85,8 @@ export default function Checklist() {
                         email: novoItemChecklist.email,
                         item: novoItemChecklist.item,
                         valor: novoItemChecklist.valor,
-                        dia_mes: novoItemChecklist.dia_mes
+                        dia_mes: novoItemChecklist.dia_mes,
+                        tag: novoItemChecklist.tag
                     }
                 )
             
@@ -97,6 +107,7 @@ export default function Checklist() {
         antigoItem['item'] = '';
         antigoItem['valor'] = '';
         antigoItem['dia_mes'] = '';
+        antigoItem['tag'] = '';
 
         setNovoItemChecklist(antigoItem)
         setAtualizaTabela(!atualizaTabela)
@@ -194,9 +205,10 @@ export default function Checklist() {
                                     <thead>
                                         <tr>
                                             <th style={{width: "10%"}}></th>
-                                            <th style={{width: "40%", textAlign: "start"}}>Item</th>
-                                            <th style={{width: "20%"}}>Valor</th>
-                                            <th style={{width: "20%"}}>Dia do mês</th>
+                                            <th style={{width: "30%", textAlign: "start"}}>Item</th>
+                                            <th style={{width: "10%", textAlign: "start"}}>TAG</th>
+                                            <th style={{width: "15%"}}>Valor</th>
+                                            <th style={{width: "15%"}}>Dia do mês</th>
                                             <th style={{width: "10%"}}></th>
                                         </tr>
                                     </thead>
@@ -206,6 +218,13 @@ export default function Checklist() {
                                                 <tr key={item.id}>
                                                     <td><input type="checkbox" id={item.id} checked={item.checked} onChange={(event) => {marcaItemChecklist(event)}}/></td>
                                                     <td>{item.item}</td>
+                                                    <td>
+                                                        <div className="mdTags-tag">
+                                                            <div className="mdTags-tag-item">
+                                                                <span style={{backgroundColor: item.corfundo, color: item.corletra}}>{item.tag}</span>
+                                                            </div>
+                                                        </div>
+                                                    </td>
                                                     <td style={{textAlign: "center"}}>{formatarMoeda(item.valor)}</td>
                                                     <td style={{textAlign: "center"}}>{item.dia_mes}</td>
                                                     <td style={{textAlign: "center"}}><span className="icon-excluiItemChecklist"><BsBackspace /></span></td>
@@ -245,9 +264,35 @@ export default function Checklist() {
                             <div className="area-addItemChecklist">
                                 <h4>Adicionar novo item</h4>
                                 <form className="form-addItem">
-                                    <div className="area-nomeNovoItem">
-                                        <label htmlFor="nomeNovoItem">Item</label>
-                                        <input onChange={handleChangeNovoItem} name="item" type="text" id="nomeNovoItem" placeholder="Ex: Conta de luz" value={novoItemChecklist.item}/>
+                                    <div className="area-nomeTag">
+                                        <div className="area-nome">
+                                            <label htmlFor="nomeNovoItem">Item</label>
+                                            <input onChange={handleChangeNovoItem} name="item" type="text" id="nomeNovoItem" placeholder="Ex: Conta de luz" value={novoItemChecklist.item}/>
+                                        </div>
+                                        <div className="mdMovimento-areaTag">
+                                            <div className="mdMovimento-btnAdicionaTag" onClick={() => setSelecaoTagAtiva(!selecaoTagAtiva)}>
+                                                <BsTag className='icon-tag'/>
+                                                <div id='tag'>
+                                                    {!tagSelecionada ? 'Adicione uma tag' : 
+                                                        <div className="mdTags-tag">
+                                                            <div className="mdTags-tag-item">
+                                                                <span style={{backgroundColor: infoTagSelecionada.corfundo, color: infoTagSelecionada.corletra}}>{infoTagSelecionada.tag}</span>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                            <ModalTags 
+                                                className="checklist"
+                                                selecaoTagOn={selecaoTagAtiva}
+                                                tagSelecionada={tagSelecionada}
+                                                infoMovimento={novoItemChecklist}
+                                                informaTagMovimento={setNovoItemChecklist}
+                                                informaTagSelecionada={setInfoTagSelecionada}
+                                                closeSelecao={() => setSelecaoTagAtiva(!selecaoTagAtiva)}
+                                                selecionaTag={() => setTagSelecionada(!tagSelecionada)}
+                                            />
+                                        </div>
                                     </div>
                                     <div className="area-valorDia">
                                         <div className="area-valor">
