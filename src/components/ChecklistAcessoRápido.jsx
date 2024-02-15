@@ -34,7 +34,7 @@ export default function ChecklistAcessoRapido() {
         const date = new Date();
         const ano = date.getFullYear();
         const mes = date.getMonth() + 1;
-        const dataItemChecklist = `${ano}${mes < 10 ? '0'+mes : mes}${dia_mes < 10 ? '0'+dia_mes : dia_mes}`
+        const dataItemChecklist = `${ano}${mes < 10 ? '0'+mes : mes}${mes == 2 ? 28 : dia_mes < 10 ? '0'+dia_mes : dia_mes}`
 
         const emailCk = decodeURIComponent(Cookies.get('userEmail'));
 
@@ -59,6 +59,9 @@ export default function ChecklistAcessoRapido() {
             }
         } else {
             try {
+                console.log(id)
+                console.log(dataItemChecklist)
+                console.log(emailCk)
                 await api.post(
                     '/marcaItemChecklist',
                     {
@@ -79,6 +82,7 @@ export default function ChecklistAcessoRapido() {
             }
         }
 
+        window.location.reload();
         setAtualizaTabela(!atualizaTabela)
     }
 

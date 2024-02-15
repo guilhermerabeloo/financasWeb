@@ -15,7 +15,13 @@ export default function MovimentacoesAcessoRapido() {
                 const response = await api.get(`/listaMovimentos/${email}`)
                 const data = response.data.data;
 
-                setMovimentos(data)
+                const movimentosAtuais = data.filter((d) => {
+                    const dataMovimento = new Date(d.dataoriginal);
+                    const dataAtual = new Date();
+                    return dataMovimento <= dataAtual
+                })
+
+                setMovimentos(movimentosAtuais)
             } catch(error) {
                 console.log(error)
             }

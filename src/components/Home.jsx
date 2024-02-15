@@ -38,6 +38,11 @@ export default function Home() {
         async function buscaMeta() {
             const responseMeta = await api.get(`/buscaMetaAtual/${email}`);
             const dataMeta = responseMeta.data.data[0];
+
+            if(!dataMeta) {
+                return
+            }
+
             const meta = Number(dataMeta.meta);
             setMetaAtual(meta);
         }
@@ -47,7 +52,6 @@ export default function Home() {
 
     useEffect(() => {
         totaisCabecalho.saldo > metaAtual ? setStatusMeta('positivo') : setStatusMeta('negativo')
-        console.log('09')
     }, [metaAtual, totaisCabecalho])
 
     return (

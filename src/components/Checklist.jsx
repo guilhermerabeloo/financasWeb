@@ -111,6 +111,7 @@ export default function Checklist() {
 
         setNovoItemChecklist(antigoItem)
         setAtualizaTabela(!atualizaTabela)
+        setTagSelecionada(false)
     }
 
     const marcaItemChecklist = async (event) => {

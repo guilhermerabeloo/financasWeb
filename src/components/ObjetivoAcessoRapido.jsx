@@ -16,6 +16,11 @@ export default function ObjetivoAcessoRapido() {
             try {
                 const response = await api.get(`/buscaObjetivoCompleto/${email}`)
                 const data = response.data.data;
+                
+                if(!data.cabecalho.length) {
+                    return
+                }
+
                 const etapas = data.metasObjetivo;
                 let realizado = 0;
                 etapas.map((e) => {

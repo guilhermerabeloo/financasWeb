@@ -7,9 +7,10 @@ import { BsBackspace, BsPencilSquare  } from 'react-icons/bs'
 import { useState, useEffect } from 'react';
 
 export default function Movimentacoes() {
+    const [ lancamentosFuturos, setLancamentosFuturos ] = useState(false);
     const [ movimentos, setMovimentos ] = useState([]);
     const [ filtroSelecionado, setFiltroSelecionado ] = useState('Todos');
-    const [ totaisMovimentos, setTotaisMovimentos ] = useState({receitas: 5500, despesa: 2390})
+    const [ totaisMovimentos, setTotaisMovimentos ] = useState({receitas: 0, despesa: 0})
  
     const email = decodeURIComponent(Cookies.get('userEmail'));
     useEffect(() => {
@@ -17,8 +18,18 @@ export default function Movimentacoes() {
             try {
                 const response = await api.get(`/listaMovimentos/${email}`)
                 const data = response.data.data;
+                let movimentosSelecionados;
+                if(!lancamentosFuturos) {
+                    movimentosSelecionados = data.filter((d) => {
+                        const dataMovimento = new Date(d.dataoriginal);
+                        const dataAtual = new Date();
+                        return dataMovimento <= dataAtual
+                    })
+                } else {
+                    movimentosSelecionados = data;
+                }
 
-                const movimentosFiltrados = data.filter((d) => {
+                const movimentosFiltrados = movimentosSelecionados.filter((d) => {
                     if(filtroSelecionado == 'Todos') {
                         return d
                     }
@@ -41,16 +52,14 @@ export default function Movimentacoes() {
                     despesa: Number(data[0].despesa)
                 }
                 
-                // console.log(dataNumber)
                 setTotaisMovimentos(dataNumber)
             } catch(error) {
                 console.log(error)
             }
         }
         getTotais()
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [email, filtroSelecionado])
+    }, [email, filtroSelecionado, lancamentosFuturos])
 
     const chartData = {
         series: [totaisMovimentos.despesa, totaisMovimentos.receitas],
@@ -120,6 +129,7 @@ export default function Movimentacoes() {
                                 <button id="btn-filtroTodos" className={`${filtroSelecionado == 'Todos' ? 'active' : ''}`} onClick={() => setFiltroSelecionado('Todos')}>Todos</button>
                                 <button id="btn-filtroDespesas" className={`${filtroSelecionado == 'Despesa' ? 'active' : ''}`} onClick={() => setFiltroSelecionado('Despesa')}>Despesas</button>
                                 <button id="btn-filtroReceitas" className={`${filtroSelecionado == 'Receita' ? 'active' : ''}`} onClick={() => setFiltroSelecionado('Receita')}>Receitas</button>
+                                <button id="btn-filtroLancFuturos" className={`${lancamentosFuturos ? 'active' : ''}`} onClick={() => setLancamentosFuturos(!lancamentosFuturos)}>Lançamentos futuros</button>
                            </div>
                            <div className="area-botoesFiltrosData">
                                 <input id="inp-filtroDataInicio" type="Date" />

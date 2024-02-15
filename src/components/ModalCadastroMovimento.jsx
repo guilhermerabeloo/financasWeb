@@ -123,7 +123,7 @@ export function ModalMovimento({ modalOn, closeMovimento }) {
                 data: parcelaFormat,
                 valor: novoMovimento.valor,
                 tipomovimento_id: novoMovimento.tipo,
-                tag: novoMovimento.tipo == 1 ? novoMovimento.tag : 0,
+                tag: novoMovimento.tipo == 1 ? novoMovimento.tag : null,
                 checklistmensal_id: novoMovimento.itemChecklist == 'Selecione' ? null : novoMovimento.itemChecklist
             })
         }
@@ -152,9 +152,7 @@ export function ModalMovimento({ modalOn, closeMovimento }) {
                 itemChecklist: 'Selecione'
             });
 
-            toast.success('Movimento cadastrado com sucesso!', {
-                autoClose: 2000,
-            });
+            window.location.reload();
         } catch(err) {
             console.log(err)
             toast.error('Erro ao cadastrar o movimento.', {
