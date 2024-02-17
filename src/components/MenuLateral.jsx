@@ -45,10 +45,10 @@ export default function MenuLateral({ propToggleExpandirGrid, menuExpandido }) {
                         </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link to="/relatorios">
                             <span><BsGraphUpArrow /></span>
                             <p>Relatórios</p>
-                        </a>
+                        </Link>
                     </li>
                 </ul>
                 <div className="area-expandeMenu">

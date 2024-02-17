@@ -11,6 +11,7 @@ import Checklist from '../components/Checklist.jsx'
 import Movimentacoes from '../components/Movimentacoes.jsx'
 import Objetivo from '../components/Objetivo.jsx'
 import CadastroObjetivo from '../components/CadastroObjetivo.jsx'
+import Relatorios from '../components/Relatorios.jsx'
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: '/movimentacoes',
         element: <Movimentacoes />
+      },
+      {
+        path: '/relatorios',
+        element: <Relatorios />
       },
       {
         path: '/objetivo',

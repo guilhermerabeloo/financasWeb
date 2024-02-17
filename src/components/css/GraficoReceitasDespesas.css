@@ -1,0 +1,9 @@
+container-graficoComposicaoDespesas {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+
+container-graficoComposicaoDespesas h4 {
+    margin: 5% auto;
+}
