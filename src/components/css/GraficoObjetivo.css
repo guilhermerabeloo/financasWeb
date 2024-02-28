@@ -1,0 +1,15 @@
+.container-graficoObjetivo {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 100%;
+}
+
+.container-graficoObjetivo h4 {
+    margin: 10px auto;
+}
+
+.container-graficoObjetivo .area-graficoRadial {
+    flex: 1;
+    height: 80%;
+}

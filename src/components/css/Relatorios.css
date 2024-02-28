@@ -15,12 +15,12 @@
 }
 
 .content-relatorios .area-relatorios1 {
-    height: 39%;
+    height: 45%;
     margin-bottom: 20px;
 }
 
 .content-relatorios .area-relatorios2 {
-    height: 59%;
+    height: 55%;
 }
 
 .content-relatorios .area-relatorios1, 
@@ -42,6 +42,7 @@
 
 .content-relatorios .area-graficoEvolucao {
     width: 65%;
+    height: 100%;
     background-color: var(--branco);
     border-radius: 20px;
 }

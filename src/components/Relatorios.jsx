@@ -1,5 +1,7 @@
 import './css/relatorios.css';
 import GraficoComposicaoDespesas from './GraficoComposicaoDespesas';
+import GraficoEvolucaoReceitaDespesa from './GraficoEvolucaoReceitaDespesa';
+import GraficoObjetivo from './GraficoObjetivo';
 import GraficoReceitasDespesas from './GraficoReceitasDespesas';
 
 import { BsCashCoin , BsCreditCard2Back } from 'react-icons/bs';
@@ -38,7 +40,10 @@ export default function Relatorios() {
                             </div>
                         </div>
                         <div className="area-graficoEvolucao">
-                            
+                            <GraficoEvolucaoReceitaDespesa 
+                                receitas={[5500, 5500, 6300, 6300, 6300, 6300]}
+                                despesas={[3409, 3190, 3897, 4000, 4060, 3980]}
+                            />
                         </div>
                     </div>
                     <div className="area-relatorios2">
@@ -55,7 +60,9 @@ export default function Relatorios() {
                             />
                         </div>
                         <div className="area-graficoObjetivo">
-
+                            <GraficoObjetivo 
+                                atingido={50}
+                            />
                         </div>
                     </div>
                 </div>

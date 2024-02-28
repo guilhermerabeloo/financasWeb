@@ -1,0 +1,15 @@
+.container-graficoEvolucaoReceitasDespesas {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    width: 95%;
+    height: 100%;
+}
+
+.container-graficoEvolucaoReceitasDespesas h4 {
+    margin: 10px auto;
+}
+
+.container-graficoEvolucaoReceitasDespesas .area-graficoLinha {
+    flex: 1;
+}

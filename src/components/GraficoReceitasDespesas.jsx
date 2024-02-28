@@ -19,7 +19,7 @@ export default function GraficoReceitasDespesas({despesa, receita}) {
             plotOptions: {
                 pie: {
                     donut: {
-                        size: '80%'
+                        size: '85%'
                     }
                 }
             },
@@ -36,11 +36,13 @@ export default function GraficoReceitasDespesas({despesa, receita}) {
         <>
             <div className="container-graficoReceitasDespesas">
                 <h4>Receitas vs Despesas</h4>
-                <Chart 
-                    options={chartData.options}
-                    series={chartData.series}
-                    type='donut'
-                />
+                <div className="area-graficoRosca">
+                    <Chart 
+                        options={chartData.options}
+                        series={chartData.series}
+                        type='donut'
+                    />
+                </div>
             </div>
         </>
     )

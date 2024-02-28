@@ -1,9 +1,14 @@
-container-graficoComposicaoDespesas {
+.container-graficoReceitasDespesas {
     display: flex;
     flex-direction: column;
     width: 90%;
+    height: 100%;
 }
 
-container-graficoComposicaoDespesas h4 {
-    margin: 5% auto;
+.container-graficoReceitasDespesas h4 {
+    margin: 10px auto;
+}
+
+.container-graficoReceitasDespesas .area-graficoRosca {
+    flex: 1;
 }
