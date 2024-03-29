@@ -1,0 +1,99 @@
+.content-relatoriosGraficos {
+    height: 100%;
+}
+
+.content-relatoriosGraficos .area-relatorios1 {
+    height: 45%;
+    margin-bottom: 20px;
+}
+
+.content-relatoriosGraficos .area-relatorios2 {
+    height: 50%;
+}
+
+.content-relatoriosGraficos .area-relatorios1, 
+.content-relatoriosGraficos .area-relatorios2 {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.content-relatoriosGraficos .area-cartoes,
+.content-relatoriosGraficos .area-graficoComposicaoDespesa,
+.content-relatoriosGraficos .area-graficoReceitaDespesa,
+.content-relatoriosGraficos .area-graficoObjetivo {
+    width: 32%;
+    margin-right: 20px;
+    border-radius: 20px;
+    background-color: var(--branco);
+}
+
+.content-relatoriosGraficos .area-graficoEvolucao {
+    width: 65%;
+    height: 100%;
+    background-color: var(--branco);
+    border-radius: 20px;
+}
+
+.content-relatoriosGraficos .area-cartaoReceita {
+    display: flex;
+    height: 50%;
+}
+
+.content-relatoriosGraficos .area-iconCartao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35%;
+}
+
+.content-relatoriosGraficos .iconReceita,
+.content-relatoriosGraficos .iconDespesa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5vw;
+    width: 5vw;
+    border-radius: 100%;
+    font-size: 2.1vw;
+    color: var(--branco);
+}
+
+.content-relatoriosGraficos .iconReceita {
+    background-color: var(--azul-escuro2);
+}
+
+.content-relatoriosGraficos .iconDespesa {
+    background-color: var(--vermelho-escuro1);
+}
+
+.content-relatoriosGraficos .area-indicadorCartao {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 65%;
+}
+
+.content-relatoriosGraficos .area-indicadorCartao h4 {
+    margin-bottom: 7px;
+    font-size: .9rem;
+    font-weight: initial;
+}
+
+.content-relatoriosGraficos .area-indicadorCartao span {
+    font-size: 2vw;
+    font-weight: initial;
+}
+
+.content-relatoriosGraficos .area-cartaoDespesa {
+    display: flex;
+    height: 50%;
+}
+
+.content-relatoriosGraficos .area-graficoReceitaDespesa,
+.content-relatoriosGraficos .area-graficoComposicaoDespesa,
+.content-relatoriosGraficos .area-graficoObjetivo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

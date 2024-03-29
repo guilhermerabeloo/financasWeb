@@ -18,7 +18,6 @@ export default function GraficoComposicaoDespesas({ label, valores }) {
         options: {
             chart: {
                 type: 'bar',
-                height: 350,
                 toolbar: false
             },
             colors: ['#34508C'],
@@ -43,11 +42,14 @@ export default function GraficoComposicaoDespesas({ label, valores }) {
         <>
             <div className="container-graficoComposicaoDespesas">
                 <h4>Composição das despesas</h4>
-                <Chart 
-                    options={chartDataBarra.options}
-                    series={chartDataBarra.series}
-                    type='bar'
-                />
+                <div className="area-graficoBarras">
+                    <Chart 
+                        options={chartDataBarra.options}
+                        series={chartDataBarra.series}
+                        type='bar'
+                        height="100%"
+                    />
+                </div>
             </div>
         </>
     )

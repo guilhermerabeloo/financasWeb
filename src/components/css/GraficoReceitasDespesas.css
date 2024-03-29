@@ -11,4 +11,5 @@
 
 .container-graficoReceitasDespesas .area-graficoRosca {
     flex: 1;
+    height: 80%;
 }

@@ -1,112 +1,48 @@
 .area-tituloRelatorios {
     display: flex;
     align-items: end;
+    justify-content: space-between;
     margin-left: 2%;
-    height: 5%;
+    padding-right: 3.5%;
+    height: 8%;
     color: var(--azul-claro);
+}
+
+.area-tipoVisualizacao {
+    display: flex;
+    justify-content: end;
+    width: 10%;
+}
+
+.area-tipoVisualizacao button {
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    margin-left: 7px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.1);
+    border: none;
+    opacity: 1;
+}
+
+.area-tipoVisualizacao button.active {
+    background-color: var(--cinza-escuro1);
+}
+
+.area-tipoVisualizacao button:hover {
+    opacity: .7;
+}
+
+
+.area-tipoVisualizacao button:active {
+    transform: scale(0.9);
 }
 
 .content-relatorios {
     display: flex;
     flex-direction: column;
-    height: 100%;
-    padding: 1.5%;
+    height: 92%;
+    padding: 1.5% 1.5% 0 1.5%;
     box-sizing: border-box;
-}
-
-.content-relatorios .area-relatorios1 {
-    height: 45%;
-    margin-bottom: 20px;
-}
-
-.content-relatorios .area-relatorios2 {
-    height: 55%;
-}
-
-.content-relatorios .area-relatorios1, 
-.content-relatorios .area-relatorios2 {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-}
-
-.content-relatorios .area-cartoes,
-.content-relatorios .area-graficoComposicaoDespesa,
-.content-relatorios .area-graficoReceitaDespesa,
-.content-relatorios .area-graficoObjetivo {
-    width: 32%;
-    margin-right: 20px;
-    border-radius: 20px;
-    background-color: var(--branco);
-}
-
-.content-relatorios .area-graficoEvolucao {
-    width: 65%;
-    height: 100%;
-    background-color: var(--branco);
-    border-radius: 20px;
-}
-
-.content-relatorios .area-cartaoReceita {
-    display: flex;
-    height: 50%;
-}
-
-.content-relatorios .area-iconCartao {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 35%;
-}
-
-.content-relatorios .iconReceita,
-.content-relatorios .iconDespesa {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 5vw;
-    width: 5vw;
-    border-radius: 100%;
-    font-size: 2.1vw;
-    color: var(--branco);
-}
-
-.content-relatorios .iconReceita {
-    background-color: var(--azul-escuro2);
-}
-
-.content-relatorios .iconDespesa {
-    background-color: var(--vermelho-escuro1);
-}
-
-.content-relatorios .area-indicadorCartao {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 65%;
-}
-
-.content-relatorios .area-indicadorCartao h4 {
-    margin-bottom: 7px;
-    font-size: .9rem;
-    font-weight: initial;
-}
-
-.content-relatorios .area-indicadorCartao span {
-    font-size: 2vw;
-    font-weight: initial;
-}
-
-.content-relatorios .area-cartaoDespesa {
-    display: flex;
-    height: 50%;
-}
-
-.content-relatorios .area-graficoReceitaDespesa,
-.content-relatorios .area-graficoComposicaoDespesa,
-.content-relatorios .area-graficoObjetivo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 

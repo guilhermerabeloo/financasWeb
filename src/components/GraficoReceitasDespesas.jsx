@@ -41,6 +41,7 @@ export default function GraficoReceitasDespesas({despesa, receita}) {
                         options={chartData.options}
                         series={chartData.series}
                         type='donut'
+                        height="85%"
                     />
                 </div>
             </div>
