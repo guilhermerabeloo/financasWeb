@@ -1,72 +1,77 @@
 .content-relatoriosTabelas {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
     height: 100%;
     border-radius: 20px;
     background-color: var(--branco);
+    overflow-y: auto;
+    overflow-x: auto;
 }
 
-.content-relatoriosTabelas .area-cabecalho {
-    color: var(--branco);
-    background-color: var(--azul);
-    height: 40px;
-    border-radius: 20px 20px 0 0;
+.content-relatoriosTabelas::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    border-radius: 0 10px 10px 0;
+    background-color: var(--branco);
 }
 
-.content-relatoriosTabelas .area-cabecalho {
-    display: flex;
-    border-radius: 20px 20px 0 0;
-    border-bottom: solid 3px;
-    border-color: var(--branco);
+.content-relatoriosTabelas::-webkit-scrollbar-thumb {
+    background-color: #aaa;
+    border-radius: 10px;
 }
 
-.content-relatoriosTabelas .area-cabecalho .coluna1 {
-    border-right: solid 3px;
-    border-color: var(--branco);
-    width: 20%;
-}
-
-.content-relatoriosTabelas .area-cabecalho .coluna2 {
-    width: 80%;
-}
-
-.content-relatoriosTabelas .area-content {
-    display: flex;
-    height: 95%;
-}
-
-.content-relatoriosTabelas .area-content .cabecalhoSecundario {
-    display: flex;
-    background-color: var(--azul);
-    color: var(--branco);
+.content-relatoriosTabelas #tabelaRelatorio {
     width: 100%;
-    height: 40px;
+    height: 100%;
+    border-collapse: collapse;    
 }
 
-.content-relatoriosTabelas .area-content .content {
-    height: 88%;
+.content-relatoriosTabelas #tabelaRelatorio .area-cabecalho {
+    color: var(--branco);   
+    position: sticky;
+    top: 0;
 }
 
-.content-relatoriosTabelas .area-content .content .linhaTabela {
-    height: 40px;
+.content-relatoriosTabelas #tabelaRelatorio .area-cabecalho tr th span {
+    display: inline-block;
+    width: 150px;
 }
 
-.content-relatoriosTabelas .area-content .liquido {
-    height: 40px;
+.content-relatoriosTabelas #tabelaRelatorio .area-cabecalho tr {
+    background-color: var(--azul);
+    height: 35px;
 }
 
-.content-relatoriosTabelas .area-content .coluna1 {
-    width: 20%;
+.content-relatoriosTabelas #tabelaRelatorio .area-conteudo tr td{
+    box-sizing: border-box;
+    border: 1.8px dashed var(--azul);
 }
 
-.content-relatoriosTabelas .area-content .coluna2 {
-    display: flex;
-    width: 80%;
-} 
+.content-relatoriosTabelas #tabelaRelatorio .area-conteudo tr {
+    font-size: 14px;
+    height: 35px;
+}
 
-.content-relatoriosTabelas .area-content .coluna2 .competenciaTabela {
-    width: 100%;
-    border-left: solid 3px;
-    border-color: var(--branco);
-} 
+.content-relatoriosTabelas #tabelaRelatorio .area-conteudo tr td.rotulo,
+.content-relatoriosTabelas #tabelaRelatorio .area-conteudo tr td.dado {
+    font-size: 16px;
+}
+
+.content-relatoriosTabelas #tabelaRelatorio .area-conteudo tr td.debito {
+    color: var(--vermelho-escuro2);
+}
+
+.content-relatoriosTabelas #tabelaRelatorio area-totais {
+    display: table-row-group;
+    position: sticky;
+    top: 0;
+}
+
+.content-relatoriosTabelas #tabelaRelatorio .area-totais tr td.rotulo,
+.content-relatoriosTabelas #tabelaRelatorio .area-totais tr td.dado {
+    font-size: 16px;
+}
+
+.content-relatoriosTabelas #tabelaRelatorio .area-totais tr.linha-total {
+    background-color: var(--azul);
+    color: var(--branco);
+    height: 35px;
+}
