@@ -1,5 +1,32 @@
-.content-relatoriosTabelas {
+.area-filtrosRelTabela {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+    height: 7%;
+}
+
+.area-filtrosDataTabela {
+    display: flex;
+    justify-content: end;
+    align-items: center;
     height: 100%;
+}
+
+.area-filtrosDataTabela input {
+    width: 150px;
+    height: 30px;
+    padding: 0 10px 0 10px;
+    box-sizing: border-box;
+    border-radius: 7px;
+    border: none;
+}
+
+.area-filtrosDataTabela p {
+    margin: 0 10px 0 10px;
+}
+
+.content-relatoriosTabelas {
+    height: 93%;
     border-radius: 20px;
     background-color: var(--branco);
     overflow-y: auto;

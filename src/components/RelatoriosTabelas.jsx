@@ -1,243 +1,65 @@
-import { useState } from 'react';
-import { formatarMoeda } from '../assets/util';
 import './css/relatoriosTabelas.css';
+import { useEffect, useState } from 'react';
+import { formatarMoeda } from '../assets/util';
+import { api } from '../lib/api';
+import Cookies from 'js-cookie';
 
 export default function RelatoriosTabelas() {
-    const [ linhas, setLinhas ] = useState([
-        {
-            rotulo: 'Salário', 
-            tipo: 'C',
-            competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024', 'ABR 2024', 'MAI 2024', 'JUN 2024', 'JUL 2024', 'AGO 2024', 'SET 2024', 'OUT 2024', 'NOV 2024', 'DEZ 2024', 'JAN 2025', 'FEV 2025', 'MAR 2025', 'ABR 2025', 'MAI 2025', 'JUN 2025', 'JUL 2025', 'AGO 2025', 'SET 2025', 'OUT 2025', 'NOV 2025', 'DEZ 2025'],
-            valores: [6300, 6300, 6300, 6300, 6300, 6300, 6300, 6300, 6300, 6300, 6300, 6300, 6300, 6300, 6300, 6300, 6300, 6300, 6300, 6300, 6300, 6300, 6300, 6300]
-        },
-        {
-            rotulo: 'Faculdade', 
-            tipo: 'D',
-            competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024', 'ABR 2024', 'MAI 2024', 'JUN 2024', 'JUL 2024', 'AGO 2024', 'SET 2024', 'OUT 2024', 'NOV 2024', 'DEZ 2024', 'JAN 2025', 'FEV 2025', 'MAR 2025', 'ABR 2025', 'MAI 2025', 'JUN 2025', 'JUL 2025', 'AGO 2025', 'SET 2025', 'OUT 2025', 'NOV 2025', 'DEZ 2025'],
-            valores: [-709, -460, -460, -709, -460, -460, -709, -460, -460, -709, -460, -460, -709, -460, -460, -709, -460, -460, -709, -460, -460, -709, -460, -460]
-        },
-        {
-            rotulo: 'Parcela da moto', 
-            tipo: 'D',
-            competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024', 'ABR 2024', 'MAI 2024', 'JUN 2024', 'JUL 2024', 'AGO 2024', 'SET 2024', 'OUT 2024', 'NOV 2024', 'DEZ 2024', 'JAN 2025', 'FEV 2025', 'MAR 2025', 'ABR 2025', 'MAI 2025', 'JUN 2025', 'JUL 2025', 'AGO 2025', 'SET 2025', 'OUT 2025', 'NOV 2025', 'DEZ 2025'],
-            valores: [-1115, -1115, -1115, -1115, -1115, -1115, -1115, -1115, -1115, -1115, -1115, -1115, -1115, -1115, -1115, -1115, -1115, -1115, -1115, -1115, -1115, -1115, -1115, -1115]
-        },
-        {
-            rotulo: 'Salário', 
-            tipo: 'C',
-            competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024', 'ABR 2024', 'MAI 2024', 'JUN 2024', 'JUL 2024', 'AGO 2024', 'SET 2024', 'OUT 2024', 'NOV 2024', 'DEZ 2024', 'JAN 2025', 'FEV 2025', 'MAR 2025', 'ABR 2025', 'MAI 2025', 'JUN 2025', 'JUL 2025', 'AGO 2025', 'SET 2025', 'OUT 2025', 'NOV 2025', 'DEZ 2025'],
-            valores: [6300, 6300, 6300, 6300, 6300, 6300, 6300, 6300, 6300, 6300, 6300, 6300, 6300, 6300, 6300, 6300, 6300, 6300, 6300, 6300, 6300, 6300, 6300, 6300]
-        },
-        {
-            rotulo: 'Faculdade', 
-            tipo: 'D',
-            competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024', 'ABR 2024', 'MAI 2024', 'JUN 2024', 'JUL 2024', 'AGO 2024', 'SET 2024', 'OUT 2024', 'NOV 2024', 'DEZ 2024', 'JAN 2025', 'FEV 2025', 'MAR 2025', 'ABR 2025', 'MAI 2025', 'JUN 2025', 'JUL 2025', 'AGO 2025', 'SET 2025', 'OUT 2025', 'NOV 2025', 'DEZ 2025'],
-            valores: [-709, -460, -460, -709, -460, -460, -709, -460, -460, -709, -460, -460, -709, -460, -460, -709, -460, -460, -709, -460, -460, -709, -460, -460]
-        },
-        {
-            rotulo: 'Parcela da moto', 
-            tipo: 'D',
-            competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024'],
-            valores: [-1115, -1115, -1115]
-        },
-        {
-            rotulo: 'Faculdade', 
-            tipo: 'D',
-            competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024'],
-            valores: [-709, -460, -460]
-        },
-        {
-            rotulo: 'Parcela da moto', 
-            tipo: 'D',
-            competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024'],
-            valores: [-1115, -1115, -1115]
-        },
-        {
-            rotulo: 'Salário', 
-            tipo: 'C',
-            competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024'],
-            valores: [6300, 6300, 6300]
-        },
-        {
-            rotulo: 'Faculdade', 
-            tipo: 'D',
-            competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024'],
-            valores: [-709, -460, -460]
-        },
-        {
-            rotulo: 'Parcela da moto', 
-            tipo: 'D',
-            competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024'],
-            valores: [-1115, -1115, -1115]
-        },
-        {
-            rotulo: 'Faculdade', 
-            tipo: 'D',
-            competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024'],
-            valores: [-709, -460, -460]
-        },
-        {
-            rotulo: 'Parcela da moto', 
-            tipo: 'D',
-            competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024'],
-            valores: [-1115, -1115, -1115]
-        },
-        {
-            rotulo: 'Salário', 
-            tipo: 'C',
-            competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024'],
-            valores: [6300, 6300, 6300]
-        },
-        {
-            rotulo: 'Faculdade', 
-            tipo: 'D',
-            competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024'],
-            valores: [-709, -460, -460]
-        },
-        {
-            rotulo: 'Parcela da moto', 
-            tipo: 'D',
-            competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024'],
-            valores: [-1115, -1115, -1115]
-        },
-        {
-            rotulo: 'Faculdade', 
-            tipo: 'D',
-            competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024'],
-            valores: [-709, -460, -460]
-        },
-        {
-            rotulo: 'Parcela da moto', 
-            tipo: 'D',
-            competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024'],
-            valores: [-1115, -1115, -1115]
-        },
-        {
-            rotulo: 'Salário', 
-            tipo: 'C',
-            competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024'],
-            valores: [6300, 6300, 6300]
-        }
-        // {
-        //     rotulo: 'Faculdade', 
-        //     tipo: 'D',
-        //     competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024'],
-        //     valores: [-709, -460, -460]
-        // },
-        // {
-        //     rotulo: 'Parcela da moto', 
-        //     tipo: 'D',
-        //     competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024'],
-        //     valores: [-1115, -1115, -1115]
-        // },
-        // {
-        //     rotulo: 'Faculdade', 
-        //     tipo: 'D',
-        //     competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024'],
-        //     valores: [-709, -460, -460]
-        // },
-        // {
-        //     rotulo: 'Parcela da moto', 
-        //     tipo: 'D',
-        //     competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024'],
-        //     valores: [-1115, -1115, -1115]
-        // },
-        // {
-        //     rotulo: 'Salário', 
-        //     tipo: 'C',
-        //     competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024'],
-        //     valores: [6300, 6300, 6300]
-        // },
-        // {
-        //     rotulo: 'Faculdade', 
-        //     tipo: 'D',
-        //     competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024'],
-        //     valores: [-709, -460, -460]
-        // },
-        // {
-        //     rotulo: 'Parcela da moto', 
-        //     tipo: 'D',
-        //     competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024'],
-        //     valores: [-1115, -1115, -1115]
-        // },
-        // {
-        //     rotulo: 'Parcela da moto', 
-        //     tipo: 'D',
-        //     competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024'],
-        //     valores: [-1115, -1115, -1115]
-        // },
-        // {
-        //     rotulo: 'Salário', 
-        //     tipo: 'C',
-        //     competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024'],
-        //     valores: [6300, 6300, 6300]
-        // },
-        // {
-        //     rotulo: 'Faculdade', 
-        //     tipo: 'D',
-        //     competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024'],
-        //     valores: [-709, -460, -460]
-        // },
-        // {
-        //     rotulo: 'Parcela da moto', 
-        //     tipo: 'D',
-        //     competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024'],
-        //     valores: [-1115, -1115, -1115]
-        // },
-        // {
-        //     rotulo: 'Parcela da moto', 
-        //     tipo: 'D',
-        //     competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024'],
-        //     valores: [-1115, -1115, -1115]
-        // },
-        // {
-        //     rotulo: 'Salário', 
-        //     tipo: 'C',
-        //     competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024'],
-        //     valores: [6300, 6300, 6300]
-        // },
-        // {
-        //     rotulo: 'Faculdade', 
-        //     tipo: 'D',
-        //     competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024'],
-        //     valores: [-709, -460, -460]
-        // },
-        // {
-        //     rotulo: 'Parcela da moto', 
-        //     tipo: 'D',
-        //     competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024'],
-        //     valores: [-1115, -1115, -1115]
-        // },
-        // {
-        //     rotulo: 'Parcela da moto', 
-        //     tipo: 'D',
-        //     competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024'],
-        //     valores: [-1115, -1115, -1115]
-        // },
-        // {
-        //     rotulo: 'Salário', 
-        //     tipo: 'C',
-        //     competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024'],
-        //     valores: [6300, 6300, 6300]
-        // },
-        // {
-        //     rotulo: 'Faculdade', 
-        //     tipo: 'D',
-        //     competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024'],
-        //     valores: [-709, -460, -460]
-        // },
-        // {
-        //     rotulo: 'Parcela da moto', 
-        //     tipo: 'D',
-        //     competencias: ['JAN 2024', 'FEV 2024', 'MAR 2024'],
-        //     valores: [-1115, -1115, -1115]
-        // }
-    ]);
+    const [ linhas, setLinhas ] = useState([]);
+    const [ totais, setTotais ] = useState([]);
+    const [filtrosData, setFiltrosData] = useState({
+        dataInicio: new Date().toISOString().slice(0, 10),
+        dataFinal: new Date(new Date().setMonth(new Date().getMonth() + 6)).toISOString().slice(0, 10) 
+    });
+    const email = decodeURIComponent(Cookies.get('userEmail'));
+    
+    useEffect(() => {
+        async function getDadosTabela() {
+            try {
+                const response = await api.post(`/lancamentosUsuario`,
+                    {
+                        email: email,
+                        dtInicio: filtrosData.dataInicio,
+                        dtFinal: filtrosData.dataFinal
+                    }
+                )
+                const data = response.data.data;
+                setLinhas(data);
 
-    const [ totais, setTotais ] = useState([4509, 4802, 4802, 509, 4802, 4802, 509, 4802, 4802, 509, 4802, 4802, 4509, 4802, 4802, 509, 4802, 4802, 509, 4802, 4802, 509, 4802, 4802]);
+                let somaTotais = [];
+                for(let i = 0; i < data[0].competencias.length; i++) {
+                    let liquido = 0;
+                    data.forEach((d) => {
+                        liquido += Number(d.valores[i])
+                    })
+                    somaTotais.push(liquido)
+                }
+                setTotais(somaTotais)
+            } catch(err) {
+                console.log('ERRO',err)
+            }
+        }    
+        getDadosTabela()
+    }, [email, filtrosData])
+
+    function handleChangeFiltroData(event) {
+        const inputAlterado = event.target.name;
+        const valorAlterado = event.target.value;
+        const novoFiltro = {...filtrosData};
+
+        novoFiltro[inputAlterado] = valorAlterado;
+        setFiltrosData(novoFiltro)
+    } 
 
     return (
         <>
+            <div className="area-filtrosRelTabela">
+                <div className="area-filtrosDataTabela">
+                    <input id="inp-dataInicioTabela" type="Date" name="dataInicio" value={filtrosData.dataInicio} onChange={(event) => handleChangeFiltroData(event)}/>
+                    <p> a </p>
+                    <input id="inp-dataInicioTabela" type="Date" name="dataFinal" value={filtrosData.dataFinal} onChange={(event) => handleChangeFiltroData(event)}/>
+                </div>
+            </div>
             <div className="content-relatoriosTabelas">
                 <table id="tabelaRelatorio">
                     <thead className='area-cabecalho'>
@@ -247,21 +69,21 @@ export default function RelatoriosTabelas() {
                         </tr>
                         <tr>
                             <th className='coluna1'><span>Rótulo</span></th>
-                            {linhas[0].competencias.map((comp, c) => {
+                            {linhas[0] && linhas[0].competencias.map((comp, c) => {
                                 return (
                                     <th key={c} className='coluna2'><span>{comp}</span></th>
-                                )
+                                )       
                             })}
-                        </tr>
+                        </tr>   
                     </thead>
                     <tbody className='area-conteudo'>
-                        {linhas.map((linha, l) => {
+                        {linhas[0] && linhas.map((linha, l) => {
                             return (
                                 <tr key={l} id={l}>
                                     <td className='rotulo'>{linha.rotulo}</td>
                                     {linha.valores.map((valor, v) => {
                                         return (
-                                            <td key={v} className={`dado ${valor > 0 ? 'credito': 'debito'}`}>
+                                            <td key={v} className={`dado ${valor >= 0 ? 'credito': 'debito'}`}>
                                                 {formatarMoeda(valor)}
                                             </td>
                                         )

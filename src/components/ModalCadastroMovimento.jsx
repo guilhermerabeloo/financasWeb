@@ -33,7 +33,8 @@ export function ModalMovimento({ modalOn, closeMovimento }) {
         valor: '',
         repetir: 1,
         isChecklist: '0',
-        itemChecklist: null
+        itemChecklist: null,
+        competencia: ''
     });
 
     useEffect(() => {
@@ -118,13 +119,18 @@ export function ModalMovimento({ modalOn, closeMovimento }) {
 
             const parcelaFormat = `${anoFormat}-${mesFormat}-${diaFormat}`
         
+            const dateObj = new Date(data);
+            const mesAtual = (dateObj.toLocaleString('pt-BR', { month: 'long' }))
+            const competencia = `${mesAtual.toUpperCase().substring(0,3)} ${dateObj.getFullYear()}`
+
             dados.push({
                 descricao: novoMovimento.descricao,
                 data: parcelaFormat,
                 valor: novoMovimento.valor,
                 tipomovimento_id: novoMovimento.tipo,
                 tag: novoMovimento.tipo == 1 ? novoMovimento.tag : null,
-                checklistmensal_id: novoMovimento.itemChecklist == 'Selecione' ? null : novoMovimento.itemChecklist
+                checklistmensal_id: novoMovimento.itemChecklist == 'Selecione' ? null : novoMovimento.itemChecklist,
+                competencia: competencia
             })
         }
 
@@ -149,7 +155,8 @@ export function ModalMovimento({ modalOn, closeMovimento }) {
                 valor: '',
                 repetir: 1,
                 isChecklist: '0',
-                itemChecklist: 'Selecione'
+                itemChecklist: 'Selecione',
+                'competencia': ''
             });
 
             window.location.reload();
