@@ -75,7 +75,7 @@ export function ModalMovimento({ modalOn, closeMovimento }) {
         const { name, value } = event.target;
         const movimento = {...novoMovimento};
         movimento[name] = value;
-
+        console.log(name, value)
         setNovoMovimento(movimento);
 
         if(name == 'isChecklist'){
@@ -118,11 +118,10 @@ export function ModalMovimento({ modalOn, closeMovimento }) {
             const diaFormat = parcela.getDate() < 10 ? `0${parcela.getDate()}` : parcela.getDate()
 
             const parcelaFormat = `${anoFormat}-${mesFormat}-${diaFormat}`
-        
-            const dateObj = new Date(data);
+
+            const dateObj = new Date(parcelaFormat);
             const mesAtual = (dateObj.toLocaleString('pt-BR', { month: 'long' }))
             const competencia = `${mesAtual.toUpperCase().substring(0,3)} ${dateObj.getFullYear()}`
-
             dados.push({
                 descricao: novoMovimento.descricao,
                 data: parcelaFormat,

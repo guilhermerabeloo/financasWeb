@@ -92,12 +92,17 @@ export default function GraficoObjetivo({ atingido }) {
             <div className="container-graficoObjetivo">
                 <h4>Objetivo</h4>
                 <div className="area-graficoRadial">
+                    {atingido == 0 ? (
+                      <p>Não há objetivo cadastrado</p>
+                    )
+                    : 
                     <Chart 
                         options={chartData.options}
                         series={chartData.series}
                         type='radialBar'
                         height="100%"
                     />
+                    }
                 </div>
             </div>
         </>

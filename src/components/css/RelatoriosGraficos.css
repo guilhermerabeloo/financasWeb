@@ -1,5 +1,35 @@
-.content-relatoriosGraficos {
+.area-filtrosRelGrafico {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+    height: 7%;
+    padding-right: 2%;
+    box-sizing: border-box;
+}
+
+.area-filtrosDataGrafico {
+    display: flex;
+    justify-content: end;
+    align-items: center;
     height: 100%;
+}
+
+.area-filtrosDataGrafico input {
+    width: 150px;
+    height: 30px;
+    padding: 0 10px 0 10px;
+    box-sizing: border-box;
+    border-radius: 7px;
+    border: none;
+}
+
+.area-filtrosDataGrafico p {
+    margin: 0 10px 0 10px;
+}
+
+
+.content-relatoriosGraficos {
+    height: 93%;
 }
 
 .content-relatoriosGraficos .area-relatorios1 {

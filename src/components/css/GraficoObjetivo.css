@@ -13,3 +13,11 @@
     flex: 1;
     height: 80%;
 }
+
+.container-graficoObjetivo .area-graficoRadial p {
+    height: 100%;
+    padding-top: 50px;
+    box-sizing: border-box;
+    vertical-align: center;
+    text-align: center;
+}

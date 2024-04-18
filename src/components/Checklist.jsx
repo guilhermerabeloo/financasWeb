@@ -178,7 +178,7 @@ export default function Checklist() {
                     email: emailCk
                 }
             )
-                
+            
             toast.success('Checklist reiniciado com sucesso!', {
                 autoClose: 1000,
             });

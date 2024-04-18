@@ -3,11 +3,12 @@ import Chart from 'react-apexcharts';
 import PropTypes from 'prop-types';
 
 GraficoEvolucaoReceitaDespesa.propTypes = {
+    competencias: PropTypes.array,
     receitas: PropTypes.array,
     despesas: PropTypes.array
 }
 
-export default function GraficoEvolucaoReceitaDespesa({ receitas, despesas }) {
+export default function GraficoEvolucaoReceitaDespesa({ competencias, receitas, despesas }) {
     const chartData = {
         options: {
             chart: {
@@ -17,7 +18,7 @@ export default function GraficoEvolucaoReceitaDespesa({ receitas, despesas }) {
                 }
             },
             xaxis: {
-                categories: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho']
+                categories: competencias
             },
             colors: ['#34508C','#C33131'],
         },

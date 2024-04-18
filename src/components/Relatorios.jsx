@@ -5,7 +5,7 @@ import RelatoriosGraficos from './RelatoriosGraficos';
 import RelatoriosTabelas from './RelatoriosTabelas';
 
 export default function Relatorios() {
-    const [ visualizacaoPrincipal, setVisualizacaoPrincipal ] = useState(false);
+    const [ visualizacaoPrincipal, setVisualizacaoPrincipal ] = useState(true);
 
     return (
         <>
