@@ -71,7 +71,6 @@ export default function CadastroObjetivo() {
             const dataInicio = formNovoObjetivo.dataInicial
             const competencia = new Date(dataInicio.substring(0,4), Number(dataInicio.substring(5,7)) -1, 1);
             competencia.setMonth(competencia.getMonth() + i);
-
             acumulado += metaMensal
 
             const mesAtual = (competencia.toLocaleString('pt-BR', { month: 'long' }))
@@ -145,9 +144,10 @@ export default function CadastroObjetivo() {
         const emailCk = decodeURIComponent(Cookies.get('userEmail'));
         const metas = etapasObjetivo.map((etapa) => {
             const data = etapa.data;
-            const diaFormatado = data.getDate()+1 < 10 ? `0${data.getDate()+1}` : data.getDate()+1;
-            const mesFormatado = data.getMonth() < 10 ? `0${data.getMonth()}` : data.getMonth();
+            const diaFormatado = data.getDate() < 10 ? `0${data.getDate()}` : data.getDate();
+            const mesFormatado = data.getMonth()+1 < 10 ? `0${data.getMonth()+1}` : data.getMonth()+1;
             const dataFormatada = `${data.getFullYear()}-${mesFormatado}-${diaFormatado }`;
+            console.log(data, mesFormatado)
 
             return {competencia: etapa.competencia, data: dataFormatada, valor: etapa.meta}
         })

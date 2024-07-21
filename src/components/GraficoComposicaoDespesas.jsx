@@ -8,6 +8,7 @@ GraficoComposicaoDespesas.propTypes = {
 }
 
 export default function GraficoComposicaoDespesas({ label, valores }) {
+    console.log(label, valores)
     const chartDataBarra = {
         series: [
           {

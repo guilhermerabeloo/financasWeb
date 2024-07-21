@@ -1,16 +1,30 @@
 import './css/movimentacoes.css'
 import Cookies from 'js-cookie';
-import Chart from 'react-apexcharts';
 import { api } from '../lib/api';
 import { ToastContainer } from 'react-toastify'
 import { BsBackspace, BsPencilSquare  } from 'react-icons/bs'
 import { useState, useEffect } from 'react';
+import GraficoComposicaoDespesas from './GraficoComposicaoDespesas';
+import GraficoReceitasDespesas from './GraficoReceitasDespesas';
 
 export default function Movimentacoes() {
     const [ lancamentosFuturos, setLancamentosFuturos ] = useState(false);
     const [ movimentos, setMovimentos ] = useState([]);
     const [ filtroSelecionado, setFiltroSelecionado ] = useState('Todos');
-    const [ totaisMovimentos, setTotaisMovimentos ] = useState({receitas: 0, despesa: 0})
+    const [ filtrosData, setFiltrosData ] = useState({
+        dataInicio: new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString().slice(0, 10),
+        dataFinal: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).toISOString().slice(0, 10) 
+    });
+    const [ dadosRelatorios, setDadosRelatorios ] = useState({
+        competencias: [],
+        receitas: [],
+        despesas: [],
+        totaisreceitas: 0,
+        totaisdespesas: 0,
+        labeltags: [],
+        valortags: [],
+        objetivo: 0
+    })
  
     const email = decodeURIComponent(Cookies.get('userEmail'));
     useEffect(() => {
@@ -43,78 +57,44 @@ export default function Movimentacoes() {
         }
         getMovimentos()
 
-        async function getTotais() {
+        async function getDadosGraficos() {
             try {
-                const response = await api.get(`/totaisMovimentos/${email}`)
-                const data = response.data.data;
-                const dataNumber = {
-                    receitas: Number(data[0].receitas),
-                    despesa: Number(data[0].despesa)
-                }
-                
-                setTotaisMovimentos(dataNumber)
-            } catch(error) {
-                console.log(error)
-            }
-        }
-        getTotais()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [email, filtroSelecionado, lancamentosFuturos])
-
-    const chartData = {
-        series: [totaisMovimentos.despesa, totaisMovimentos.receitas],
-        options: {
-            chart: {
-                type: 'donut'
-            },
-            colors: ['#C33131', '#34508C'],
-            labels: ['Despesas', 'Receitas'],
-            plotOptions: {
-                pie: {
-                    donut: {
-                        size: '80%'
+                const response = await api.post(`/relatorioGraficos`,
+                    {
+                        email: email,
+                        dtInicio: filtrosData.dataInicio,
+                        dtFinal: filtrosData.dataFinal
                     }
-                }
-            },
-            dataLabels: {
-                enabled: false,
-            },
-            legend: {
-                position: 'right'
-            }
-        },
-    };
+                )
+                const data = response.data.data;
 
-    const chartDataBarra = {
-        series: [
-          {
-            name: 'Valor',
-            data: [64, 55, 44, 43],
-          }
-        ],
-        options: {
-            chart: {
-                type: 'bar',
-                height: 350,
-                toolbar: false
-            },
-            colors: ['#34508C'],
-            plotOptions: {
-                bar: {
-                    horizontal: true,
-            },
-            },
-            dataLabels: {
-                enabled: false,
-            },
-            xaxis: {
-                categories: ['Mensalidades', 'Lazer', 'Cartões', 'Farmácia'],
-                labels: {
-                    show: false, 
-                },
-            },
-        },
-      };
+                const dadosUpdate = {
+                    competencias: data.competencias,
+                    receitas: data.receitas,
+                    despesas: data.despesas,
+                    totaisreceitas: data.totaisreceitas,
+                    totaisdespesas: data.totaisdespesas,
+                    labeltags: data.labeltags,
+                    valortags: data.valortags,
+                    objetivo: data.objetivo
+                }
+                setDadosRelatorios(dadosUpdate)
+            } catch(err) {
+                console.log('ERRO',err)
+            }
+        }    
+        getDadosGraficos()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [email, filtroSelecionado, lancamentosFuturos, filtrosData])
+
+    function handleChangeFiltroData(event) {
+        const inputAlterado = event.target.name;
+        const valorAlterado = event.target.value;
+        const novoFiltro = {...filtrosData};
+
+        novoFiltro[inputAlterado] = valorAlterado;
+        setFiltrosData(novoFiltro)
+    } 
 
     return (
         <>
@@ -132,9 +112,9 @@ export default function Movimentacoes() {
                                 <button id="btn-filtroLancFuturos" className={`${lancamentosFuturos ? 'active' : ''}`} onClick={() => setLancamentosFuturos(!lancamentosFuturos)}>Lançamentos futuros</button>
                            </div>
                            <div className="area-botoesFiltrosData">
-                                <input id="inp-filtroDataInicio" type="Date" />
+                                <input id="inp-filtroDataInicio" type="Date" name="dataInicio" value={filtrosData.dataInicio} onChange={(event) => handleChangeFiltroData(event)}/>
                                 <p> a </p>
-                                <input id="inp-filtroDataFinal" type="Date" />
+                                <input id="inp-filtroDataFinal" type="Date" name="dataFinal" value={filtrosData.dataFinal} onChange={(event) => handleChangeFiltroData(event)}/>
                            </div>
                         </div>
                         <div className="movimentos">
@@ -183,10 +163,9 @@ export default function Movimentacoes() {
                                 <h5>Despesas vs receitas</h5>
                             </div>
                             <div className="area-grafico">
-                                <Chart 
-                                    options={chartData.options}
-                                    series={chartData.series}
-                                    type='donut'
+                                <GraficoReceitasDespesas 
+                                    despesa={dadosRelatorios.totaisdespesas}
+                                    receita={dadosRelatorios.totaisreceitas}
                                 />
                             </div>
                         </div>
@@ -195,10 +174,9 @@ export default function Movimentacoes() {
                                 <h5>Tags</h5>
                             </div>
                             <div className="area-grafico">
-                                <Chart 
-                                    options={chartDataBarra.options}
-                                    series={chartDataBarra.series}
-                                    type='bar'
+                                <GraficoComposicaoDespesas 
+                                    label={dadosRelatorios.labeltags}
+                                    valores={dadosRelatorios.valortags}
                                 />
                             </div>
                         </div>

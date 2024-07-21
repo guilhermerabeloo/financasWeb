@@ -8,7 +8,7 @@ export default function RelatoriosTabelas() {
     const [ linhas, setLinhas ] = useState([]);
     const [ totais, setTotais ] = useState([]);
     const [filtrosData, setFiltrosData] = useState({
-        dataInicio: new Date().toISOString().slice(0, 10),
+        dataInicio: new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString().slice(0, 10),
         dataFinal: new Date(new Date().setMonth(new Date().getMonth() + 6)).toISOString().slice(0, 10) 
     });
     const email = decodeURIComponent(Cookies.get('userEmail'));
